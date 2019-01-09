@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_first"
+        android:icon="@drawable/selector_grid_icon"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_second"
+        android:icon="@drawable/selector_purchase_icon"
+        android:title="" />
+
+    <item
+        android:id="@+id/navigation_last"
+        android:icon="@drawable/selector_help_icon"
+        android:title="" />
+
+</menu>
