@@ -60,4 +60,9 @@ dependencies {
     implementation "org.jetbrains.anko:anko-sqlite:0.10.8"
 
 
+    //memorizing-pager
+    implementation 'com.github.lndmflngs:memorizing-pager:2.0.1'
+
+
+
 }

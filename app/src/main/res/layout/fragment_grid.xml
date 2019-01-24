@@ -11,25 +11,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:contentInsetStartWithNavigation="0dp"
-                app:layout_scrollFlags="scroll|enterAlways"/>
-
 
         <android.support.design.widget.TabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                app:tabMaxWidth="0dp"
                 app:tabGravity="fill"
-                app:tabIndicatorColor="@android:color/white"
-                app:tabIndicatorHeight="3dp"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="@android:color/white"
-                app:tabTextAppearance="@style/TextAppearance.Design.Tab"
-                app:tabTextColor="@color/grey_20"/>
+                app:tabIndicatorColor="@color/EERIE_BLACK"
+                app:tabIndicatorHeight="2dp"
+                app:tabSelectedTextColor="@color/EERIE_BLACK"
+                app:tabTextColor="@color/EERIE_BLACK2"/>
 
     </android.support.design.widget.AppBarLayout>
 

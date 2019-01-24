@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/BABY_POWDER</color>
-    <color name="colorPrimaryDark">@color/BABY_POWDER2</color>
+    <color name="colorPrimaryDark">@color/SIENNA</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="INACTIVE_ICONS">#ababab</color>
+    <color name="ACTIVE_ICONS">#191716</color>
 
 
     <color name="EERIE_BLACK">#191716</color>
