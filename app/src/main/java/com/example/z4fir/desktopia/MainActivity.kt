@@ -12,7 +12,6 @@ import android.view.MenuItem
 import com.example.z4fir.desktopia.Fragments.GridFragment
 import com.example.z4fir.desktopia.Fragments.HelpFragment
 import com.example.z4fir.desktopia.Fragments.PurchaseFragment
-import com.lockwood.memorizingpager.NavigationHistory
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.toolbar
 

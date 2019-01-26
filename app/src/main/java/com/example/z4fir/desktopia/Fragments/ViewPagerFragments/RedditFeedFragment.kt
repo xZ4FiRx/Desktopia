@@ -6,10 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.z4fir.desktopia.Fragments.GridFragment
 
 import com.example.z4fir.desktopia.R
-import org.jetbrains.anko.support.v4.toast
 
 
 class RedditFeedFragment : Fragment()

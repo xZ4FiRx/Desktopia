@@ -70,7 +70,8 @@
                             android:onClick="onButtonTabClick"
                             android:paddingLeft="@dimen/spacing_xlarge"
                             android:paddingRight="@dimen/spacing_xlarge"
-                            android:text="HOME"
+                            android:text="#Battlestations"
+                            android:textAllCaps="false"
                             android:textColor="@android:color/white"/>
 
                     <Button
