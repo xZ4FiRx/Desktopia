@@ -34,6 +34,7 @@ import java.util.ArrayList
 
 class InstagramFeedFragment : Fragment()
 {
+    //R
     private var items: ArrayList<InstaModel.InstagramResponse>
 
     private lateinit var recyclerView: RecyclerView
