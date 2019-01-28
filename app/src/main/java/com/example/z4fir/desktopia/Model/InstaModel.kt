@@ -10,8 +10,8 @@ object InstaModel
     class InstagramHashtagResponse(val edge_hashtag_to_media: InstagramHashtagToMediaResponse)
 
     class InstagramHashtagToMediaResponse(
-        val page_info: InstagramHashtagResponse,
-        val edges: List<InstagramEdgesResponse>)
+        val page_info: InstagramPageInfo,
+        val edges: ArrayList<InstagramEdgesResponse>)
 
     class InstagramPageInfo(
         val has_next_page: Boolean,
@@ -21,10 +21,10 @@ object InstaModel
 
     class InstagramNodeResponse(
         val __typename: String,
-        val shortcode: String,
+        val shortCode: String,
         val display_url: String,
         val thumbnail_src: String,
-        val thumbnail_resources: List<InstagramThumbnailResourceResponse>,
+        val thumbnail_resources: ArrayList<InstagramThumbnailResourceResponse>,
         val is_video: Boolean,
         val accessibility_caption: String)
 

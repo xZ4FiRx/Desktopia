@@ -1,6 +1,7 @@
 package com.example.z4fir.desktopia.Util
 
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RestAPI
@@ -15,7 +16,7 @@ object RestAPI
             {
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(MoshiConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build()
             }
 

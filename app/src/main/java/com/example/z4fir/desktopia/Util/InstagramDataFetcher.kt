@@ -8,5 +8,5 @@ import retrofit2.http.Path
 interface InstagramDataFetcher
 {
     @GET("tags/{tag}/?__a=1&max_id=")
-    fun getInstagramData(@Path("tag") hashtag: String) : Call<InstaModel.InstagramResponse>
+    fun getInstagramData(@Path("tag") hashtag: String) : Call <InstaModel.InstagramResponse>
 }

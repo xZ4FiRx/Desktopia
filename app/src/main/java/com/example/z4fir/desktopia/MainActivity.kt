@@ -12,6 +12,7 @@ import android.view.MenuItem
 import com.example.z4fir.desktopia.Fragments.GridFragment
 import com.example.z4fir.desktopia.Fragments.HelpFragment
 import com.example.z4fir.desktopia.Fragments.PurchaseFragment
+import com.example.z4fir.desktopia.Fragments.ViewPagerFragments.InstagramFeedFragment
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.toolbar
 
@@ -25,7 +26,6 @@ class MainActivity : AppCompatActivity()
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_nav)
         val firstFrag = GridFragment.newInstance()
-
 
         openFragment(firstFrag)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
