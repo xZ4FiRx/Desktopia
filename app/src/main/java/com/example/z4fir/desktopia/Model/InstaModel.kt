@@ -1,36 +1,34 @@
 package com.example.z4fir.desktopia.Model
 
-object InstaModel
+import android.os.Parcelable
+
+
+data class InstagramResponse(val graphql: InstagramGraphqlResponse)
 {
 
-    class InstagramResponse(val graphql: InstagramGraphqlResponse)
+    data class InstagramGraphqlResponse(val hashtag: InstagramHashtagResponse)
 
-    class InstagramGraphqlResponse(val hashtag: InstagramHashtagResponse)
+    data class InstagramHashtagResponse(val edge_hashtag_to_media: InstagramHashtagToMediaResponse)
 
-    class InstagramHashtagResponse(val edge_hashtag_to_media: InstagramHashtagToMediaResponse)
+    data class InstagramHashtagToMediaResponse(
+        val page_info: InstagramPageInfo, val edges: ArrayList<InstagramEdgesResponse>
+    )
 
-    class InstagramHashtagToMediaResponse(
-        val page_info: InstagramPageInfo,
-        val edges: ArrayList<InstagramEdgesResponse>)
-
-    class InstagramPageInfo(
+    data class InstagramPageInfo(
         val has_next_page: Boolean,
-        val end_cursor: String)
+        val end_cursor: String
+    )
 
-    class InstagramEdgesResponse(val node: InstagramNodeResponse)
-
-    class InstagramNodeResponse(
+    data class InstagramEdgesResponse(val node: InstagramNodeResponse)
+    data class InstagramNodeResponse(
         val __typename: String,
-        val shortCode: String,
+        val shortcode: String,
         val display_url: String,
         val thumbnail_src: String,
-        val thumbnail_resources: ArrayList<InstagramThumbnailResourceResponse>,
         val is_video: Boolean,
-        val accessibility_caption: String)
-
-    class InstagramThumbnailResourceResponse(
-        val src: String,
-        val config_width: Int,
-        val config_height: Int)
-
+        val accessibility_caption: String
+    )
 }
+
+annotation class Parcelize
+

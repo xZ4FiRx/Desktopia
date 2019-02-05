@@ -9,12 +9,13 @@ object RestAPI
     private var retrofit: Retrofit? = null
     private const val BASE_URL = "https://instagram.com/explore/"
 
-    val instagramRetrofitInstance: Retrofit?
+    val retrofitInstance: Retrofit?
         get()
         {
-            if (retrofit == null)
+            if(retrofit == null)
             {
-                retrofit = Retrofit.Builder()
+                retrofit = retrofit2.Retrofit
+                    .Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

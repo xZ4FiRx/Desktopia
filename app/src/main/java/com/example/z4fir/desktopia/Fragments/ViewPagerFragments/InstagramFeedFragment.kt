@@ -1,141 +1,126 @@
 package com.example.z4fir.desktopia.Fragments.ViewPagerFragments
 
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.util.Log.d
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import com.bumptech.glide.DrawableRequestBuilder
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.z4fir.desktopia.MainActivity
-import com.example.z4fir.desktopia.Model.InstaModel
+import com.example.z4fir.desktopia.Adapter.InstagramGridAdapter
+import com.example.z4fir.desktopia.Model.InstagramResponse
 
 import com.example.z4fir.desktopia.R
 import com.example.z4fir.desktopia.Util.InstagramDataFetcher
 import com.example.z4fir.desktopia.Util.RestAPI
 import com.example.z4fir.desktopia.Util.Tools
 import com.example.z4fir.desktopia.Widgets.SpacingItemDecoration
-import retrofit2.Call
-import retrofit2.Callback
+import org.jetbrains.anko.custom.async
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 import retrofit2.Response
-import java.util.ArrayList
+import java.io.IOException
 
 
-class InstagramFeedFragment : Fragment()
+class InstagramFeedFragment() : Fragment()
 {
-    //R
-    private var items: ArrayList<InstaModel.InstagramResponse>
-
+    private lateinit var swipeLayout: SwipeRefreshLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private val ctx: Context? = null
-
-    //Instagram JSON Data
-    private var endCursor: String? = null
-    private var typeName: String? = null
-    private var shortCode: String? = null
-    private var displayURL: String? = null
-    private var isVideo: Boolean? = null
-    private var accessibilityCaption: String? = null
-    private var imageSrc: String? = null
-
-
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-
-        retrofitCall("battlestations")
-
-    }
+    private var data: ArrayList<InstagramResponse.InstagramEdgesResponse>? = null
+    private val conTx: Context? = null
 
     companion object
     {
         fun newInstance(): InstagramFeedFragment = InstagramFeedFragment()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+        handleData()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
-        var view: View = inflater.inflate(R.layout.fragment_instagram_feed, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_instagram_feed, container, false)
 
 
-        viewManager = GridLayoutManager(ctx, 2)
-        viewAdapter = InstaRecAdapter(items)
 
+        swipeLayout = view.findViewById(R.id.recyclerview_refresh)
+
+        viewManager = GridLayoutManager(conTx, 2)
         recyclerView = view.findViewById<RecyclerView>(R.id.insta_recyclerview).apply {
 
             setHasFixedSize(true)
-            addItemDecoration(SpacingItemDecoration(2, Tools.dpToPx(this!!.context!!, 4), true))
+            addItemDecoration(SpacingItemDecoration(2, Tools.dpToPx(context, 2), true))
             layoutManager = viewManager
-            adapter = viewAdapter
         }
-
         return view
     }
 
-    private fun retrofitCall(hashtag: String)
+
+
+    private fun handleData()
     {
-        val service = RestAPI.instagramRetrofitInstance?.create(InstagramDataFetcher::class.java)
-        val call = service?.getInstagramData(hashtag)
-        call?.enqueue(object : Callback<InstaModel.InstagramResponse>
-        {
-            override fun onFailure(call: Call<InstaModel.InstagramResponse>, t: Throwable)
+        doAsync {
+
+            var asyncData: ArrayList<InstagramResponse.InstagramEdgesResponse>? = null
+
+            val service = RestAPI.retrofitInstance?.create(InstagramDataFetcher::class.java)
+            val call = service?.getInstagramData("battlestation")
+
+            try
             {
-                Log.d("FEED", " $t")
+                val result: Response<InstagramResponse>? = call!!.execute()
+
+                if (result!!.isSuccessful)
+                {
+                    val body = result.body()
+                    asyncData = body!!.graphql.hashtag.edge_hashtag_to_media.edges
+
+                    val filterTypeName = asyncData.filter { it.node.__typename == "GraphImage" }
+                    val filterCaption1 = filterTypeName.filter { !it.node.accessibility_caption.contains("text") }
+                    val filterCaption2 =
+                        filterCaption1.filter { !it.node.accessibility_caption.contains("people standing") }
+                    val filterCaption3 = filterCaption2.filter { !it.node.accessibility_caption.contains("food") }
+                    val filterCaption4 = filterCaption3.filter { !it.node.accessibility_caption.contains("drink") }
+                    val filterCaption5 = filterCaption4.filter { !it.node.accessibility_caption.contains("shoes") }
+                    val filterCaption6 = filterCaption5.filter { !it.node.accessibility_caption.contains("standing") }
+                    val filterCaption7 = filterCaption6.filter { !it.node.accessibility_caption.contains("outdoor") }
+                    val filterCaption8 = filterCaption7.filter { !it.node.accessibility_caption.contains("meme") }
+                    val filterCaption9 = filterCaption8.filter { !it.node.accessibility_caption.contains("beard") }
+
+                    asyncData = filterCaption9 as ArrayList<InstagramResponse.InstagramEdgesResponse>
+
+                }
+            } catch (e: IOException)
+            {
+
             }
 
-            override fun onResponse(
-                call: Call <InstaModel.InstagramResponse>,
-                response: Response <InstaModel.InstagramResponse>
-            )
-            {
-                for (item in items!!.indices)
-                {
-                    d("FEED", item.toString())
+            uiThread {
+
+                data = asyncData
+
+                viewAdapter = InstagramGridAdapter(data!!, parentFragment!!.context!!)
+                recyclerView.adapter = viewAdapter
+
+                swipeLayout.setOnRefreshListener {
+
+                    (viewAdapter as InstagramGridAdapter).clear()
+                    (viewAdapter as InstagramGridAdapter).addItem(data!!)
+                    swipeLayout.isRefreshing = false
                 }
             }
-        })
+        }
     }
 
-
-    class InstaRecAdapter(private val data: ArrayList<InstaModel.InstagramResponse>) :
-        RecyclerView.Adapter<InstaRecAdapter.InstaViewHolder>()
-    {
-        private val ctx: Context? = null
-
-        override fun onCreateViewHolder(parent: ViewGroup, p1: Int): InstaRecAdapter.InstaViewHolder
-        {
-            val imageView = LayoutInflater.from(ctx).inflate(R.layout.item_grid_image, parent, false) as ImageView
-
-            return InstaViewHolder(imageView)
-
-        }
-
-        override fun getItemCount(): Int
-        {
-            return data.size
-        }
-
-        override fun onBindViewHolder(holder: InstaRecAdapter.InstaViewHolder, p1: Int)
-        {
-            Glide.with(ctx).load(data[p1].graphql.hashtag.edge_hashtag_to_media.edges[p1].node.thumbnail_src)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.itemView as ImageView)
-        }
-
-        class InstaViewHolder(itemView: ImageView) : RecyclerView.ViewHolder(itemView)
-    }
 }
-

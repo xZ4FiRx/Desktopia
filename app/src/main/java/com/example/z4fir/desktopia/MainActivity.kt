@@ -8,13 +8,20 @@ import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
+import android.util.Log
 import android.view.MenuItem
 import com.example.z4fir.desktopia.Fragments.GridFragment
 import com.example.z4fir.desktopia.Fragments.HelpFragment
 import com.example.z4fir.desktopia.Fragments.PurchaseFragment
 import com.example.z4fir.desktopia.Fragments.ViewPagerFragments.InstagramFeedFragment
+import com.example.z4fir.desktopia.Model.InstagramResponse
+import com.example.z4fir.desktopia.Util.InstagramDataFetcher
+import com.example.z4fir.desktopia.Util.RestAPI
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.toolbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity()
 {
@@ -29,9 +36,7 @@ class MainActivity : AppCompatActivity()
 
         openFragment(firstFrag)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
     }
-
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId)

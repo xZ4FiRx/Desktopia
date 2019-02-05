@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Desktopia</string>
+
+
+    <string-array name="grid_filter">
+        <item>text</item>
+        <item>people standing</item>
+        <item>food</item>
+        <item>drink</item>
+        <item>shoes</item>
+        <item>standing</item>
+        <item>outdoor</item>
+        <item>meme</item>
+        <item>beard</item>
+    </string-array>
+
+
 </resources>

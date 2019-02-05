@@ -1,26 +1,35 @@
 package com.example.z4fir.desktopia.Fragments
 
 
+import android.content.Context
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.z4fir.desktopia.Fragments.ViewPagerFragments.InstagramFeedFragment
 import com.example.z4fir.desktopia.Fragments.ViewPagerFragments.RedditFeedFragment
+import com.example.z4fir.desktopia.Model.InstagramResponse
 
 import com.example.z4fir.desktopia.R
+import com.example.z4fir.desktopia.Util.InstagramDataFetcher
+import com.example.z4fir.desktopia.Util.RestAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class GridFragment : Fragment()
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+class GridFragment() : Fragment()
 {
-
     private var viewPagerAdapter: PagerAdapter? = null
 
     companion object
@@ -68,6 +77,7 @@ class GridFragment : Fragment()
                 tab!!.icon!!.setColorFilter(resources.getColor(R.color.ACTIVE_ICONS), PorterDuff.Mode.SRC_IN)
             }
         })
+
         return view
     }
 
@@ -98,5 +108,3 @@ class GridFragment : Fragment()
         }
     }
 }
-
-

@@ -25,9 +25,9 @@ class Tools
             }
         }
 
-        public fun dpToPx(c: Context, dp: Int): Int
+        public fun dpToPx(c: Context?, dp: Int): Int
         {
-            val r = c.resources
+            val r = c!!.resources
             return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), r.displayMetrics))
         }
     }
