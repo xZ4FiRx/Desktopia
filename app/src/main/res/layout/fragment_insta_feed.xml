@@ -5,8 +5,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent" android:layout_height="match_parent"
         android:background="@color/yellow_600"
-        tools:context=".Fragments.ViewPagerFragments.InstagramFeedFragment"
+        tools:context=".Fragments.ViewPagerFragments.InstaGridFragment"
         android:id="@+id/frameLayout">
+
 
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/recyclerview_refresh"
@@ -164,6 +165,20 @@
             android:layout_alignParentBottom="true"
             tools:layout_editor_absoluteX="51dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="0dp"/>
+            android:layout_marginBottom="0dp">
+    </android.support.design.widget.BottomNavigationView>
+
+    <ProgressBar
+            android:theme="@style/CircularProgress"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:id="@+id/progressBar"
+            android:indeterminate="true"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/recyclerview_refresh" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_placeholder"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerview_refresh"
+            app:layout_constraintStart_toStartOf="@+id/recyclerview_refresh" android:layout_marginStart="8dp"/>
 
 </android.support.constraint.ConstraintLayout>

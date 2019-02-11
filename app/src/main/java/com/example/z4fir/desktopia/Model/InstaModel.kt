@@ -1,34 +1,49 @@
 package com.example.z4fir.desktopia.Model
 
-import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 
-data class InstagramResponse(val graphql: InstagramGraphqlResponse)
+data class InstaResponse(val graphql: GraphqlResponse)
 {
 
-    data class InstagramGraphqlResponse(val hashtag: InstagramHashtagResponse)
+    data class GraphqlResponse(val hashtag: HashtagResponse)
 
-    data class InstagramHashtagResponse(val edge_hashtag_to_media: InstagramHashtagToMediaResponse)
+    data class HashtagResponse(val edge_hashtag_to_media: HashtagToMediaResponse)
 
-    data class InstagramHashtagToMediaResponse(
-        val page_info: InstagramPageInfo, val edges: ArrayList<InstagramEdgesResponse>
+    data class HashtagToMediaResponse(
+        val page_info: PageInfo,
+        val edges: ArrayList<EdgesResponse>
     )
 
-    data class InstagramPageInfo(
+    data class PageInfo(
         val has_next_page: Boolean,
         val end_cursor: String
     )
 
-    data class InstagramEdgesResponse(val node: InstagramNodeResponse)
-    data class InstagramNodeResponse(
+    data class EdgesResponse(val node: NodeResponse)
+    data class NodeResponse(
+        @SerializedName("shortcode")
+        val shortCode: String,
+        @SerializedName("__typename")
         val __typename: String,
-        val shortcode: String,
+        @SerializedName("display_url")
         val display_url: String,
+        @SerializedName("thumbnail_src")
         val thumbnail_src: String,
+        @SerializedName("thumbnail_resources")
+        val thumbnail_resources: ArrayList<ThumbNailResResponse>,
+        @SerializedName("is_video")
         val is_video: Boolean,
+        @SerializedName("accessibility_caption")
         val accessibility_caption: String
     )
-}
 
-annotation class Parcelize
+    data class ThumbNailResResponse(
+        @SerializedName("config_height")
+        val configHeight: Int,
+        @SerializedName("config_width")
+        val configWidth: Int,
+        val src: String
+    )
+}
 

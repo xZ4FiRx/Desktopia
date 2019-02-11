@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.example.z4fir.desktopia.Model.InstagramResponse
+import com.example.z4fir.desktopia.Model.InstaResponse
 import com.example.z4fir.desktopia.R
 import com.squareup.picasso.Picasso
 import java.util.ArrayList
 
-class InstagramGridAdapter(private val data: ArrayList<InstagramResponse.InstagramEdgesResponse>, var ctx: Context) :
-    RecyclerView.Adapter<InstagramGridAdapter.InstaViewHolder>()
+class InstaGridAdapter(var data: ArrayList<InstaResponse.EdgesResponse>, var ctx: Context) :
+    RecyclerView.Adapter<InstaGridAdapter.InstaViewHolder>()
 {
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): InstagramGridAdapter.InstaViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): InstaGridAdapter.InstaViewHolder
     {
         ctx = parent.context
         val imageView = LayoutInflater.from(ctx).inflate(R.layout.item_grid_image, parent, false)
@@ -31,10 +31,11 @@ class InstagramGridAdapter(private val data: ArrayList<InstagramResponse.Instagr
     }
 
 
-    override fun onBindViewHolder(holder: InstagramGridAdapter.InstaViewHolder, position: Int)
+    override fun onBindViewHolder(holder: InstaGridAdapter.InstaViewHolder, position: Int)
     {
-        val stringURL: String = data[position].node.thumbnail_src
+        val stringURL: String = data[position].node.thumbnail_resources[3].src
         holder.bindView(stringURL)
+
     }
 
     fun clear()
@@ -43,14 +44,13 @@ class InstagramGridAdapter(private val data: ArrayList<InstagramResponse.Instagr
         notifyDataSetChanged()
     }
 
-    fun addItem(items: ArrayList<InstagramResponse.InstagramEdgesResponse>)
+    fun addItem(items: ArrayList<InstaResponse.EdgesResponse>)
     {
         data.addAll(items)
-        d("FEED", " ${data.size}")
         notifyDataSetChanged()
     }
 
-    class InstaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class InstaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
         fun bindView(stringURL: String)
         {
