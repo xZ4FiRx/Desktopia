@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="200dp">
 
-    <com.balysv.materialripple.MaterialRippleLayout
-        android:id="@+id/lyt_parent"
-        style="@style/RippleStyleBlack"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="200dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <ImageView
+    <data>
+
+        <variable
+                name="instagramTagPost"
+                type="com.example.z4fir.desktopia.Screens.Showcase.Model.InstagramResponse.NodeResponse" />
+
+        <variable
+                name="clickListner"
+                type="com.example.z4fir.desktopia.Screens.Showcase.Recyclerview.InstagramTagAdapter" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="">
+
+        <ImageView
                 android:id="@+id/grid_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:foreground="@color/overlay_dark_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image_2" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/image_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
 
 
 
-        </RelativeLayout>
-
-    </com.balysv.materialripple.MaterialRippleLayout>
-
-</LinearLayout>

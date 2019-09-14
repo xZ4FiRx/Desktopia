@@ -3,8 +3,8 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:background="@color/BABY_POWDER"
-             tools:context=".Fragments.HelpFragment">
+             android:background="@color/blue_400"
+             tools:context=".Screens.Informal.HelpFragment">
 
 
 </FrameLayout>

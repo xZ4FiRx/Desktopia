@@ -1,40 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/EERIE_BLACK"
-        tools:context=".Activity.MainActivity">
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/BABY_POWDER"
-            app:menu="@menu/menu_bottom_navigation_light_simple"
-            app:labelVisibilityMode="unlabeled"
-            app:itemIconSize="27dp"
-            app:itemBackground="@color/BABY_POWDER"
-            app:itemHorizontalTranslationEnabled="true"
-            app:itemIconTint="@drawable/selector_bottom_nav_tint"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"/>
+    <data>
 
+    </data>
 
-    <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="-1dp"
-            android:layout_alignBottom="@+id/bottom_nav">
-    </FrameLayout>
+            android:layout_width="match_parent"
+            tools:context=".MainActivity">
 
-</RelativeLayout>
+        <androidx.fragment.app.FragmentContainerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:id="@+id/nav_host"
+                app:layout_constraintBottom_toTopOf="@+id/nav_bottom_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/BABY_POWDER"
+                app:menu="@menu/nav_bottom"
+                app:itemIconTint="@drawable/selector_bottom_nav_tint"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/nav_bottom_view">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

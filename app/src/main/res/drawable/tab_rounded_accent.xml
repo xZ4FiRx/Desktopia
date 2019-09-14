@@ -5,8 +5,8 @@
         <layer-list>
             <item android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp">
                 <shape android:shape="rectangle">
-                    <corners android:bottomLeftRadius="30dp" android:bottomRightRadius="30dp" android:radius="60dp" android:topLeftRadius="30dp" android:topRightRadius="30dp" />
-                    <solid android:color="@color/SIENNA" />
+                    <corners android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp" android:radius="0dp" android:topLeftRadius="0dp" android:topRightRadius="0dp" />
+                    <solid android:color="@color/SIENNA_PRESSED" />
                     <padding android:bottom="0dp" android:left="0dp" android:right="0dp" android:top="0dp" />
                     <size android:width="60dp" android:height="30dp" />
                 </shape>
@@ -34,7 +34,7 @@
         <layer-list>
             <item android:bottom="4dp" android:left="4dp" android:right="4dp" android:top="4dp">
                 <shape android:shape="rectangle">
-                    <corners android:bottomLeftRadius="30dp" android:bottomRightRadius="30dp" android:radius="60dp" android:topLeftRadius="30dp" android:topRightRadius="30dp" />
+                    <corners android:bottomLeftRadius="0dp" android:bottomRightRadius="0dp" android:radius="0dp" android:topLeftRadius="0dp" android:topRightRadius="0dp" />
                     <solid android:color="@color/SIENNA" />
                     <padding android:bottom="0dp" android:left="0dp" android:right="0dp" android:top="0dp" />
                     <size android:width="60dp" android:height="30dp" />

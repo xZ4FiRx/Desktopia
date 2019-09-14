@@ -4,6 +4,6 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@color/SIENNA"
-             tools:context=".Fragments.PurchaseFragment">
+             tools:context=".Screens.Buy.PurchaseFragment">
 
 </FrameLayout>

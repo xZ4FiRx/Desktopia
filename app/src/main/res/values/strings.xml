@@ -1,7 +1,14 @@
 <resources>
     <string name="app_name">Desktopia</string>
+    <string name="dreamsetup">#Dreamsetup</string>
+    <string name="battlestations">#Battlestations</string>
+    <string name="pcgmingsetup">#Pcgmingsetup</string>
+    <string name="workstation">#Workstation</string>
+    <string name="help">Help</string>
 
 
+    <!--    Array of words to filter from Instagram's JSON tag data.
+    TODO Find a way to filter number-->
     <string-array name="grid_filter">
         <item>text</item>
         <item>people standing</item>
@@ -13,6 +20,7 @@
         <item>meme</item>
         <item>beard</item>
         <item>people sitting</item>
+        <item>closeup</item>
     </string-array>
 
 

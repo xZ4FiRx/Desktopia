@@ -7,10 +7,10 @@
     <color name="INACTIVE_ICONS">#ababab</color>
     <color name="ACTIVE_ICONS">#191716</color>
 
-
     <color name="EERIE_BLACK">#191716</color>
     <color name="EERIE_BLACK2">#ababab</color>
     <color name="SIENNA">#9B2915</color>
+    <color name="SIENNA_PRESSED">#779B2915</color>
     <color name="BABY_POWDER">#FCFFFC</color>
     <color name="BABY_POWDER2">#E6E8E6</color>
 

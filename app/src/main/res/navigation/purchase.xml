@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/purchase"
+            app:startDestination="@id/purchaseFragment2">
+
+    <fragment
+            android:id="@+id/purchaseFragment2"
+            android:name="com.example.z4fir.desktopia.Screens.Buy.PurchaseFragment"
+            android:label="fragment_purchase"
+            tools:layout="@layout/fragment_purchase"/>
+</navigation>
