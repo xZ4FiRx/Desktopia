@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="java.util.List" />
+
+        <variable
+                name="urls"
+                type="List&lt;String>" />
+
+        <variable
+                name="index"
+                type="int" />
+
+        <variable
+                name="clickListener"
+                type="com.example.z4fir.desktopia.screens.showcase.adapter.InstagramTagAdapter" />
+    </data>
+
+
+    <!--    Add onClick-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp">
+
+        <ImageView
+                android:id="@+id/grid_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{urls[index]}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/image_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
+

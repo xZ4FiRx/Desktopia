@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/gridFragment"
-            android:name="com.example.z4fir.desktopia.Screens.Showcase.Fragments.InstagramTagFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.fragments.InstagramTagFragment"
             android:label="fragment_insta_feed"
             tools:layout="@layout/fragment_showcase"/>
 </navigation>

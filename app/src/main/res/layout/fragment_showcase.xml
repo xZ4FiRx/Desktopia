@@ -1,55 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+                name="viewModel"
+                type="com.example.z4fir.desktopia.screens.showcase.ShowcaseViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/BABY_POWDER"
-            tools:context=".Screens.Showcase.Fragments.InstagramTagFragment"
-            android:id="@+id/frameLayout">
+            tools:context=".screens.showcase.fragments.InstagramTagFragment">
 
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_refresh"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/showcase_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.66"
-                app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/showcase_list"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:overScrollMode="never"
-                    android:background="@color/BABY_POWDER"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/frameLayout"/>
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <ProgressBar
-                android:theme="@style/CircularProgress"
-                style="@style/Widget.AppCompat.ProgressBar"
-                android:layout_width="85dp"
-                android:layout_height="85dp"
-                android:id="@+id/progressBar"
-                android:indeterminate="true"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:spanCount="2"
+                tools:itemCount="16"
+                tools:listitem="@layout/grid_view_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
