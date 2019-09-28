@@ -1,9 +1,9 @@
 package com.example.z4fir.desktopia.screens.showcase.model
 
-//data class RedditModel()
+//thumbnailImage class RedditModel()
 //{
 //
-//    class RedditNewsResponse(val data: RedditDataResponse)
+//    class RedditNewsResponse(val thumbnailImage: RedditDataResponse)
 //
 //    class RedditDataResponse(
 //        val children: List<RedditChildrenResponse>,
@@ -11,9 +11,9 @@ package com.example.z4fir.desktopia.screens.showcase.model
 //        val before: String?
 //    )
 //
-//    class RedditChildrenResponse(val data: RedditNewsDataResponse)
+//    class RedditChildrenResponse(val thumbnailImage: RedditNewsDataResponse)
 //
-//    //TODO Get more data values from Reddit JSON.
+//    //TODO Get more thumbnailImage values from Reddit JSON.
 //    class RedditNewsDataResponse(
 //        val author: String,
 //        val title: String,

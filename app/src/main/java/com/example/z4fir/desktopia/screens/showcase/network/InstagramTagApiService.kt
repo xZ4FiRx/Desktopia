@@ -45,7 +45,6 @@ interface InstagramTagApiService
     fun getInstagramTagData(@Path("tag") hashtag: String): Deferred<InstagramResponse>
 }
 
-//TODO make a Reddit api call.
 object ApiService
 {
     /**

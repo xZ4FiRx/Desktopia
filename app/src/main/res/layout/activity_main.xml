@@ -34,6 +34,5 @@
                 android:id="@+id/nav_bottom_view">
 
         </com.google.android.material.bottomnavigation.BottomNavigationView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

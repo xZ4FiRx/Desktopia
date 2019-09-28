@@ -1,12 +1,8 @@
 package com.example.z4fir.desktopia.screens.showcase
 
 import android.app.Application
-import android.content.Context
-import android.nfc.Tag
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
-import com.example.z4fir.desktopia.screens.showcase.adapter.InstagramTagAdapter
 import com.example.z4fir.desktopia.screens.showcase.database.getDatabase
 import com.example.z4fir.desktopia.screens.showcase.model.InstagramResponse
 import com.example.z4fir.desktopia.screens.showcase.network.ApiService
@@ -15,95 +11,81 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Response
 import java.io.IOException
 import java.lang.Exception
 
-class ShowcaseViewModel(application: Application) : AndroidViewModel(application),
-    InstagramTagAdapter.InstagramTagViewHolder.OnItemListener
-{
+class ShowcaseViewModel(application: Application) : AndroidViewModel(application) {
     private val postRepository = PostRepository(getDatabase(application))
     private val postList = postRepository.posts
-
-    private val _instagramTagResponses = MutableLiveData<List<String>>()
-    val instagramTagResponse: LiveData<List<String>>
-        get() = _instagramTagResponses
-
     private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(
-        viewModelJob + Dispatchers.Main
-    )
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    init
-    {
-        val tags = listOf(
-            "battlestations",
-            "workstation",
-            "pcsetups"
-        )
-        val randoTags = tags.shuffled()[0]
+    private val _hashTagDataResponse = MutableLiveData<List<InstagramResponse>>()
+    val hashtagDataResponse: LiveData<List<InstagramResponse>>
+        get() = _hashTagDataResponse
+
+    init {
+        val randoTags = "cats"
 
         Log.i("ShowcaseViewModel-Init", randoTags)
 
-        getInstagramData(randoTags)
+        getInstagramData()
         refreshDataFromRepo(randoTags)
     }
 
-    private fun getInstagramData(hashTag: String)
-    {
+    private fun getInstagramData() {
         coroutineScope.launch {
+            try {
+                val hashTag1 = ApiService.retrofitService.getInstagramTagData("battlestation").await()
+                val hashTag2 = ApiService.retrofitService.getInstagramTagData("setups").await()
+                val hashTag3 = ApiService.retrofitService.getInstagramTagData("pcbuild").await()
+                val hashTagList = listOf(hashTag1, hashTag2, hashTag3)
 
-            val jsonResponseList = mutableListOf<String>()
+                _hashTagDataResponse.value = hashTagFilter(hashTagList)
 
-            try
-            {
-                val getData = ApiService.retrofitService.getInstagramTagData(hashTag).await()
-                getData.graphql.hashtag.edgeHashtagToMedia.edges.forEach {
-                    jsonResponseList.add(it.node.thumbnailResources[3].src)
-                }
-                _instagramTagResponses.value = jsonResponseList
-            } catch (e: Exception)
-            {
+
+            } catch (e: Exception) {
                 Log.e("ShowcaseViewModel", e.toString())
             }
         }
     }
 
-    private fun refreshDataFromRepo(hashTag: String)
-    {
+    private fun refreshDataFromRepo(hashTag: String) {
         viewModelScope.launch {
-            try
-            {
+            try {
                 postRepository.refreshPost(hashTag)
 
-            } catch (networkError: IOException)
-            {
-                if (postList.value!!.isEmpty())
-                {
+            } catch (networkError: IOException) {
+                if (postList.value!!.isEmpty()) {
 
                 }
             }
         }
     }
 
-    override fun onItemClick(position: Int)
-    {
-        Toast.makeText(getApplication(), "Item at $position", Toast.LENGTH_SHORT).show()
+    private fun hashTagFilter(response: List<InstagramResponse>): List<InstagramResponse> {
+
+        val filterWords = listOf("text", "people", "food", "drink",
+            "shoes", "standing", "outdoor", "meme", "beard", "people", "closeup")
+
+        response.forEach { it ->
+            it.graphql.hashtag.edgeHashtagToMedia.edges.forEach {
+                it.node.typename.filter { typeName -> typeName.equals("GraphImage") }
+                it.node.accessibilityCaption.filter { caption -> caption.toString() in filterWords }
+            }
+        }
+
+        val typenames = mutableListOf<String>()
+
+        response.forEach { it.graphql.hashtag.edgeHashtagToMedia.edges.forEach {
+            typenames.add(it.node.typename)
+        } }
+        Log.i("hashTagFilter", "${typenames.size}")
+
+        return response.shuffled()
     }
 
-    fun jsonResponseFilter(response: InstagramResponse?): InstagramResponse?
-    {
-        //TODO Filter response
-
-        return response
-    }
-
-    //TODO Create a method to randomize hashTags.
-
-
-    override fun onCleared()
-    {
+    override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
     }

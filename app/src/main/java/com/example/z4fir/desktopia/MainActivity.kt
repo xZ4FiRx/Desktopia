@@ -41,10 +41,6 @@ class MainActivity : AppCompatActivity()
             containerId = R.id.nav_host,
             intent = intent
         )
-
-        controller.observe(this, Observer { navController ->
-            setupActionBarWithNavController(navController)
-        })
         currentNavController = controller
     }
 

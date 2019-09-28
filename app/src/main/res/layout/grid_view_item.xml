@@ -10,8 +10,8 @@
         <import type="java.util.List" />
 
         <variable
-                name="urls"
-                type="List&lt;String>" />
+                name="url"
+                type="String" />
 
         <variable
                 name="index"
@@ -32,9 +32,9 @@
                 android:id="@+id/grid_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{urls[index]}"
+                android:adjustViewBounds="true"
+                app:imageUrl="@{url}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

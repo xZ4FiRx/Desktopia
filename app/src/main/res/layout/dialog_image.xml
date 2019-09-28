@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="url"
+                type="String" />
+
+        <variable
+                name="hashTag"
+                type="String" />
+    </data>
+
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_thin"
+                    android:textSize="36sp"
+                    android:text="@{hashTag}"
+                    android:textColor="@color/BABY_POWDER"
+                    tools:text="#Hashtag"
+                    tools:textColor="@color/EERIE_BLACK"
+                    tools:textSize="36sp" />
+
+            <ImageView
+                    android:id="@+id/dialog_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:adjustViewBounds="true"
+                    app:imageUrl="@{url}"
+                    tools:src="@drawable/image_2" />
+        </RelativeLayout>
+</layout>

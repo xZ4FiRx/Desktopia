@@ -7,7 +7,7 @@
     <string name="help">Help</string>
 
 
-    <!--    Array of words to filter from Instagram's JSON tag data.
+    <!--    Array of words to filter from Instagram's JSON tag thumbnailImage.
     TODO Find a way to filter number-->
     <string-array name="grid_filter">
         <item>text</item>
@@ -22,6 +22,4 @@
         <item>people sitting</item>
         <item>closeup</item>
     </string-array>
-
-
 </resources>
