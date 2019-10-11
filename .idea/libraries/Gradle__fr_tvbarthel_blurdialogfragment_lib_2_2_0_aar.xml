@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: fr.tvbarthel.blurdialogfragment:lib:2.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ba49d29508f99730253edf88932dd88/jetified-lib-2.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ba49d29508f99730253edf88932dd88/jetified-lib-2.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ddfc9ce4fc884ea3d240d78ea6956c08/jetified-lib-2.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ddfc9ce4fc884ea3d240d78ea6956c08/jetified-lib-2.2.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/fr.tvbarthel.blurdialogfragment/lib/2.2.0/13e81f30321b42f9113395b0c38e5bf28eaf6aa/lib-2.2.0-javadoc.jar!/" />

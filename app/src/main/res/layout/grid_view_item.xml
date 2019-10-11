@@ -24,24 +24,35 @@
 
 
     <!--    Add onClick-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.balysv.materialripple.MaterialRippleLayout
+            style="@style/RippleStyleDark"
             android:layout_width="match_parent"
-            android:layout_height="170dp">
+            android:layout_height="match_parent">
 
-        <ImageView
-                android:id="@+id/grid_image"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/grid_image_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:adjustViewBounds="true"
-                app:imageUrl="@{url}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/image_2" />
+                android:layout_height="170dp"
+                android:background="@drawable/custom_ripple">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                    android:id="@+id/grid_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{url}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/image_2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.balysv.materialripple.MaterialRippleLayout>
+
 
 </layout>
 

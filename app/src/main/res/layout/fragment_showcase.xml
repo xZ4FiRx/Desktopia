@@ -11,19 +11,33 @@
 
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/BABY_POWDER"
+            android:background="@color/EERIE_BLACK"
             tools:context=".screens.showcase.fragments.InstagramTagFragment">
 
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="102dp"
+                android:layout_height="84dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/showcase_list"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/showcase_list"
+                app:layout_constraintTop_toTopOf="@+id/showcase_list" />
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/showcase_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:scrollingCache="true"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -36,4 +50,5 @@
                 tools:listitem="@layout/grid_view_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
