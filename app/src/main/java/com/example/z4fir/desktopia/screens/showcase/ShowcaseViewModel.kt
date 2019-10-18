@@ -1,43 +1,65 @@
 package com.example.z4fir.desktopia.screens.showcase
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.*
-import com.example.z4fir.desktopia.screens.showcase.model.EdgesResponse
-import com.example.z4fir.desktopia.screens.showcase.model.InstagramResponse
+import com.example.z4fir.desktopia.screens.showcase.model.Edges
 import com.example.z4fir.desktopia.screens.showcase.network.ApiService
-import kotlinx.coroutines.Job
 
 class ShowcaseViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var viewModelJob = Job()
-    private var _hashTagDataResponse: LiveData<PagedList<EdgesResponse>>
-    val hashTagDataResponse: LiveData<PagedList<EdgesResponse>>
-        get() = _hashTagDataResponse
+    private lateinit var _data: LiveData<PagedList<Edges>>
+    val data: LiveData<PagedList<Edges>>
+        get() = _data
+
+    private val dataService = ApiService.retrofitService
+    private val itemDataSourceFactory = ItemDataSourceFactory("battlestation", dataService)
+
+
+    val networkState = Transformations.switchMap(itemDataSourceFactory.sourceLiveData) {
+        it.networkState
+    }
+    val refreshState = Transformations.switchMap(itemDataSourceFactory.sourceLiveData) {
+        it.initialLoad
+    }
 
     init {
+        initializedPagedListBuilder()
+    }
+
+    private fun initializedPagedListBuilder() {
 
         val config = PagedList.Config.Builder()
             .setPageSize(20)
             .setEnablePlaceholders(false)
             .setPrefetchDistance(10)
             .build()
-        _hashTagDataResponse = initializedPagedListBuilder(config).build()
+
+        _data = LivePagedListBuilder(itemDataSourceFactory, config).build()
     }
 
-    private fun initializedPagedListBuilder(config: PagedList.Config): LivePagedListBuilder<String, EdgesResponse> {
-        val factory = object : DataSource.Factory<String, EdgesResponse>() {
-            override fun create(): DataSource<String, EdgesResponse> {
-                val dataService = ApiService.retrofitService
-                return ItemDataSource("battlestation", dataService)
-            }
-        }
-        return LivePagedListBuilder<String, EdgesResponse>(factory, config)
+    fun refreshList() {
+        itemDataSourceFactory.sourceLiveData.value!!.invalidate()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 }
+
+//    fun refreshFromRepo() {
+//
+//        viewModelScope.launch {
+//
+//            try {
+//                postRepository.refreshPost()
+//
+//            } catch (networkError: IOException) {
+//
+//                if (posts.value!!.isEmpty()) {
+//                    Log.i("ShowcaseViewModel", "$networkError")
+//                }
+//            }
+//        }
+//    }
+
+//    private val postRepository = PostRepository(getDatabase(application))
+//    val posts = postRepository.posts
+

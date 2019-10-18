@@ -52,21 +52,24 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:2.1.0"
     implementation "androidx.legacy:legacy-support-v13:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.0.0"
-    implementation "androidx.fragment:fragment:1.2.0-alpha04"
+    implementation "androidx.fragment:fragment:1.2.0-beta02"
     implementation "com.google.android.material:material:1.0.0"
-    implementation "androidx.fragment:fragment-ktx:1.2.0-alpha04"
+    implementation "androidx.fragment:fragment-ktx:1.2.0-beta02"
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
     implementation "androidx.paging:paging-runtime:$pagingVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
 
 
     // Room dependency
-    def room_version = "2.2.0-rc01"
+    def room_version = "2.2.0"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
 
     // Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"
@@ -89,7 +92,4 @@ dependencies {
 
     //Dialog Fragment Blur
     implementation "fr.tvbarthel.blurdialogfragment:lib:2.2.0"
-
-    //Shimmer for Android
-    implementation 'com.facebook.shimmer:shimmer:0.4.0'
 }

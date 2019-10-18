@@ -24,6 +24,22 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .load(imgUri)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .apply(RequestOptions()
+                .error(R.drawable.ic_broken_image))
+            .into(imgView)
+    }
+}
+
+@BindingAdapter("imageUrlThumbnail")
+fun bindImageThumbnail(imgView: ImageView, imgUrl: String?) {
+
+    imgUrl?.let {
+        val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .centerCrop()
+            .thumbnail(0.1f)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .apply(RequestOptions()
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image))
             .into(imgView)
