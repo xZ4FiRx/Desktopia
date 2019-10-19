@@ -2,9 +2,17 @@
     <string name="app_name">Desktopia</string>
     <string name="dreamsetup">#Dreamsetup</string>
     <string name="battlestations">#Battlestations</string>
-    <string name="pcgmingsetup">#Pcgmingsetup</string>
+    <string name="pcgamingsetup">#Pcgmingsetup</string>
     <string name="workstation">#Workstation</string>
     <string name="help">Help</string>
+
+    <!-- AlertDialog list-->
+    <string name="hashtag_chooser">Hashtag Selection</string>
+    <string-array name="hashtag_array">
+        <item>#Battlestation</item>
+        <item>#Pcgamingsetup</item>
+        <item>#Workstation</item>
+    </string-array>
 
 
     <!--    Array of words to filter from Instagram's JSON tag thumbnailImage.
@@ -22,4 +30,6 @@
         <item>people sitting</item>
         <item>closeup</item>
     </string-array>
+
+
 </resources>

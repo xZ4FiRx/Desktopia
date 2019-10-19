@@ -1,4 +1,4 @@
-package com.example.z4fir.desktopia.screens.showcase
+package com.example.z4fir.desktopia.screens.showcase.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
@@ -9,10 +9,10 @@ import com.example.z4fir.desktopia.screens.showcase.network.InstagramTagApiServi
 class ItemDataSourceFactory(private val hashtag: String,
     private val apiService: InstagramTagApiService) : DataSource.Factory<String, Edges>() {
 
-    val sourceLiveData = MutableLiveData<ItemDataSource>()
+    val source = MutableLiveData<ItemDataSource>()
     override fun create(): DataSource<String, Edges> {
         val source = ItemDataSource(hashtag, apiService)
-        sourceLiveData.postValue(source)
+        this.source.postValue(source)
 
         return source
     }

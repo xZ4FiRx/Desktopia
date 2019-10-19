@@ -1,4 +1,4 @@
-package com.example.z4fir.desktopia.screens.showcase
+package com.example.z4fir.desktopia.screens.showcase.ui
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import java.lang.Exception
 class ItemDataSource(private val hashTag: String,
     private val apiService: InstagramTagApiService) : PageKeyedDataSource<String, Edges>() {
 
-    lateinit var endCursor: String
+    private lateinit var endCursor: String
     val networkState = MutableLiveData<NetworkState>()
     val initialLoad = MutableLiveData<NetworkState>()
 
@@ -83,8 +83,6 @@ class ItemDataSource(private val hashTag: String,
         val captionFilter3 = captionFilter2.filter {!it.node.accessibilityCaption.contains("food")}
         val captionFilter4 = captionFilter3.filter {!it.node.accessibilityCaption.contains("shoes")}
         val captionFilter5 = captionFilter4.filter {!it.node.accessibilityCaption.contains("No photo description available.")}
-        val captionFilter6 = captionFilter5.filter {!it.node.accessibilityCaption.contains("standing")}
-
-        return captionFilter6
+        return captionFilter5.filter {!it.node.accessibilityCaption.contains("standing")}
     }
 }

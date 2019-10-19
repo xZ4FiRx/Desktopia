@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+            android:id="@+id/action_selection"
+            android:title="@string/hashtag_chooser"
+            android:icon="@drawable/ic_radio_button_checked_black_24dp"
+            app:showAsAction="never">
+    </item>
+
+</menu>
