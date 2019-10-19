@@ -156,7 +156,7 @@ class InstagramTagFragment : Fragment() {
             true
         }
 
-        else -> {
+        else  -> {
             super.onOptionsItemSelected(item)
         }
     }
