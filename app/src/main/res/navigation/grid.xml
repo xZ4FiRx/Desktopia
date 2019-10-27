@@ -3,25 +3,48 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/grid"
-            app:startDestination="@id/gridFragment">
+            app:startDestination="@id/showcaseLanding">
 
     <fragment
             android:id="@+id/gridFragment"
-            android:name="com.example.z4fir.desktopia.screens.showcase.fragments.InstagramTagFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramTagFragment"
             android:label="fragment_insta_feed"
-            tools:layout="@layout/fragment_showcase">
+            tools:layout="@layout/fragment_instagram_showcase">
         <action
                 android:id="@+id/action_gridFragment_to_instagramDialogFragment2"
                 app:destination="@id/instagramDialogFragment"
                 app:launchSingleTop="false"
                 app:popUpToInclusive="false" />
     </fragment>
+
+
     <dialog
             android:id="@+id/instagramDialogFragment"
-            android:name="com.example.z4fir.desktopia.screens.showcase.fragments.InstagramDialogFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramDialogFragment"
             android:label="InstagramDialogFragment" >
+
         <argument
                 android:name="url"
                 app:argType="string" />
     </dialog>
+
+
+    <fragment
+            android:id="@+id/showcaseLanding"
+            android:name="com.example.z4fir.desktopia.screens.showcase.ShowcaseLanding"
+            android:label="showcaseLanding" >
+        <action
+                android:id="@+id/action_showcaseLanding_to_gridFragment"
+                app:destination="@id/gridFragment"
+                app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+                android:id="@+id/action_showcaseLanding_to_redditPostFragment"
+                app:destination="@id/redditPostFragment"
+                app:enterAnim="@anim/fragment_fade_enter" />
+    </fragment>
+    <fragment
+            android:id="@+id/redditPostFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.reddit.fragments.RedditPostFragment"
+            android:label="RedditPostFragment" />
+
 </navigation>

@@ -8,6 +8,13 @@
 
     <!-- AlertDialog list-->
     <string name="hashtag_chooser">Hashtag Selection</string>
+    <string name="reddit">Reddit</string>
+    <string name="instagram">Instagram</string>
+    <string name="caption">Caption</string>
+    <string name="info">Info</string>
+    <string name="posted">Posted:</string>
+    <string name="height">Height:</string>
+    <string name="width">Width:</string>
     <string-array name="hashtag_array">
         <item>#Battlestation</item>
         <item>#Pcgamingsetup</item>

@@ -19,14 +19,15 @@
 
         <variable
                 name="clickListener"
-                type="com.example.z4fir.desktopia.screens.showcase.adapter.InstagramTagAdapter" />
+                type="com.example.z4fir.desktopia.screens.showcase.instagram.adapter.InstagramTagAdapter" />
     </data>
 
 
     <com.balysv.materialripple.MaterialRippleLayout
             style="@style/RippleStyleDark"
             android:layout_width="match_parent"
-            android:layout_height="170dp">
+            android:layout_height="170dp"
+            app:mrl_rippleDelayClick="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/grid_image_container"

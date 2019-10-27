@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <ImageButton
+                android:id="@+id/instagram_imageButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toTopOf="@+id/divider_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/image_2" />
+
+        <View
+                android:id="@+id/divider_view"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="@color/EERIE_BLACK"
+                app:layout_constraintBottom_toBottomOf="@+id/reddit_imageButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/instagram_imageButton"
+                tools:layout_editor_absoluteY="363dp">
+
+        </View>
+
+        <ImageButton
+                android:id="@+id/reddit_imageButton"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="0dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_view"
+                app:srcCompat="@drawable/image_2" />
+
+        <TextView
+                android:id="@+id/instagram_button_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/instagram"
+                android:textSize="50sp"
+                app:layout_constraintBottom_toTopOf="@+id/divider_view"
+                app:layout_constraintEnd_toEndOf="@+id/instagram_imageButton"
+                app:layout_constraintStart_toStartOf="@+id/instagram_imageButton"
+                app:layout_constraintTop_toTopOf="@+id/instagram_imageButton" />
+
+        <TextView
+                android:id="@+id/reddit_button_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reddit"
+                android:textSize="50sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/reddit_imageButton"
+                app:layout_constraintStart_toStartOf="@+id/reddit_imageButton"
+                app:layout_constraintTop_toTopOf="@+id/reddit_imageButton" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

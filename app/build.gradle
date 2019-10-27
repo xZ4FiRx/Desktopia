@@ -19,6 +19,7 @@ android {
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -52,9 +53,9 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:2.1.0"
     implementation "androidx.legacy:legacy-support-v13:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.0.0"
-    implementation "androidx.fragment:fragment:1.2.0-beta02"
+    implementation "androidx.fragment:fragment:1.2.0-rc01"
     implementation "com.google.android.material:material:1.0.0"
-    implementation "androidx.fragment:fragment-ktx:1.2.0-beta02"
+    implementation "androidx.fragment:fragment-ktx:1.2.0-rc01"
     implementation "androidx.vectordrawable:vectordrawable:1.1.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
     implementation "androidx.paging:paging-runtime:$pagingVersion"
@@ -65,7 +66,7 @@ dependencies {
 
 
     // Room dependency
-    def room_version = "2.2.0"
+    def room_version = "2.2.1"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
@@ -92,4 +93,7 @@ dependencies {
 
     //Dialog Fragment Blur
     implementation "fr.tvbarthel.blurdialogfragment:lib:2.2.0"
+
+    //Expandable Layout
+    implementation "com.github.aakira:expandable-layout:1.6.0@aar"
 }
