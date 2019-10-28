@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.z4fir.desktopia.databinding.FragmentInstagramShowcaseBinding
 
 
-class InstagramTagFragment : Fragment() {
+class InstagramShowcaseFragment : Fragment() {
 
     companion object {
         const val KEY = "hashtag"
@@ -48,7 +48,6 @@ class InstagramTagFragment : Fragment() {
         val hashtag = savedInstanceState?.getString(KEY) ?: DEFAULT_HASHTAG
         model.addingHashtag(hashtag)
 
-        Log.i("InstagramTagFragment", "hashtag first $hashtag")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

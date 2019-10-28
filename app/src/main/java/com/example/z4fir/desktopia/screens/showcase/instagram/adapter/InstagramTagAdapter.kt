@@ -1,9 +1,12 @@
 package com.example.z4fir.desktopia.screens.showcase.instagram.adapter
 
+import android.content.Context
+import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
@@ -15,8 +18,8 @@ import com.example.z4fir.desktopia.screens.showcase.instagram.network.Status
 import java.lang.IllegalArgumentException
 import kotlin.properties.Delegates
 import androidx.recyclerview.widget.*
-import com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramDialogFragment
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
+import kotlin.coroutines.coroutineContext
 
 
 class InstagramTagAdapter : PagedListAdapter<Edges,
@@ -135,9 +138,15 @@ class InstagramTagAdapter : PagedListAdapter<Edges,
     internal class NetworkStateViewHolder(binding: NetworkStateLayoutBinding)
         : RecyclerView.ViewHolder(binding.root) {
 
-        private val progressBar = binding.progressBar
+        private val progressBar = binding.networkProgressBar
 
         fun bindView(networkState: NetworkState?) {
+
+            if( android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP)
+            {
+                progressBar.indeterminateDrawable
+                    .setColorFilter(0xABABAB,PorterDuff.Mode.ADD)
+            }
             progressBar.visibility = toVisibility(networkState?.status == Status.RUNNING)
         }
 

@@ -7,26 +7,26 @@
 
     <fragment
             android:id="@+id/gridFragment"
-            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramTagFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramShowcaseFragment"
             android:label="fragment_insta_feed"
             tools:layout="@layout/fragment_instagram_showcase">
         <action
-                android:id="@+id/action_gridFragment_to_instagramDialogFragment2"
+                android:id="@+id/action_gridFragment_to_instagramShowcaseFragment2"
                 app:destination="@id/instagramDialogFragment"
                 app:launchSingleTop="false"
                 app:popUpToInclusive="false" />
     </fragment>
 
 
-    <dialog
+    <fragment
             android:id="@+id/instagramDialogFragment"
-            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramDialogFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramDetailFragment"
             android:label="InstagramDialogFragment" >
 
         <argument
                 android:name="url"
                 app:argType="string" />
-    </dialog>
+    </fragment>
 
 
     <fragment

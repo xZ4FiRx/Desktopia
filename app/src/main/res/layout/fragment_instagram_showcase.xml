@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/EERIE_BLACK"
-            tools:context=".screens.showcase.instagram.fragments.InstagramTagFragment">
+            tools:context=".screens.showcase.instagram.fragments.InstagramShowcaseFragment">
 
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/showcase_toolbar"

@@ -1,29 +1,19 @@
 package com.example.z4fir.desktopia.screens.showcase.instagram.fragments
 
-import android.annotation.SuppressLint
-import android.content.DialogInterface
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.ScrollView
-import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.DialogFragment
-import com.example.z4fir.desktopia.databinding.FragmentDialogBinding
+import androidx.fragment.app.Fragment
+import com.example.z4fir.desktopia.databinding.FragmentInstagramDetailBinding
 import com.example.z4fir.desktopia.util.ViewAnimation
-import fr.tvbarthel.lib.blurdialogfragment.BlurDialogEngine
 import java.util.*
 
 
-class InstagramDialogFragment : DialogFragment() {
+class InstagramDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentDialogBinding
-    private lateinit var blur: BlurDialogEngine
+    private lateinit var binding: FragmentInstagramDetailBinding
     private lateinit var captionExpanded: View
     private lateinit var infoExpanded: View
 
@@ -36,13 +26,7 @@ class InstagramDialogFragment : DialogFragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentDialogBinding.inflate(LayoutInflater.from(parentFragment!!.context))
-
-        blur = BlurDialogEngine(activity)
-        blur.setBlurRadius(8)
-        blur.setDownScaleFactor(10f)
-        blur.setBlurActionBar(false)
-        blur.setUseRenderScript(true)
+        binding = FragmentInstagramDetailBinding.inflate(LayoutInflater.from(parentFragment!!.context))
 
         captionExpanded = binding.expandedCaption
         infoExpanded = binding.expandedInfo
@@ -84,14 +68,12 @@ class InstagramDialogFragment : DialogFragment() {
 
         binding.caption = caption
 
-
-
     }
 
     private fun toggleSection(bt: View, lyt: View) {
 
         val show = toggleArrow(bt)
-        val scrollView = binding.dialogScroll
+        val scrollView = binding.tagPostDetailScroll
 
         if (show) {
             ViewAnimation.expand(lyt, object : ViewAnimation.AnimListener {
@@ -122,32 +104,5 @@ class InstagramDialogFragment : DialogFragment() {
             view.animate().setDuration(200).rotation(0f)
             false
         }
-    }
-
-    @SuppressLint("ResourceAsColor")
-    override fun onResume() {
-        super.onResume()
-
-        blur.onResume(retainInstance)
-
-        val drawable: Drawable = dialog?.window?.decorView!!.background
-        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT)
-        drawable.alpha = 0
-    }
-
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        blur.onDismiss()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        blur.onDetach()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        dialog?.setDismissMessage(null)
     }
 }

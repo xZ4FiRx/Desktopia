@@ -14,12 +14,6 @@
         <item name="android:progressBackgroundTint" tools:ignore="NewApi">@color/SIENNA</item>
     </style>
 
-    <!---Dialog Box-->
-    <style name="DialogBox" parent="Animation.Design.BottomSheetDialog">
-    </style>
-
-
-
     <!--style for ripple library-->
     <style name="RippleStyleWhite">
         <item name="mrl_rippleOverlay">true</item>

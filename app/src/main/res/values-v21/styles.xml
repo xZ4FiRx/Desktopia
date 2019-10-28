@@ -9,7 +9,7 @@
     </style>
 
     <!--- Progress -->
-    <style name="CircularProgress" parent="Theme.AppCompat.Light">
+    <style name="CircularProgress" parent="Base.Widget.AppCompat.ProgressBar">
         <item name="colorAccent">@color/EERIE_BLACK</item>
         <item name="android:progressBackgroundTint" tools:ignore="NewApi">@color/SIENNA</item>
     </style>
