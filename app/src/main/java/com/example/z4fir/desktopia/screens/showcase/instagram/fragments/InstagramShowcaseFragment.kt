@@ -2,7 +2,6 @@ package com.example.z4fir.desktopia.screens.showcase.instagram.fragments
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 
 import com.example.z4fir.desktopia.screens.showcase.instagram.adapter.InstagramTagAdapter
@@ -127,7 +126,7 @@ class InstagramShowcaseFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.showcase_menu, menu)
+        inflater.inflate(R.menu.instagram_showcase_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {

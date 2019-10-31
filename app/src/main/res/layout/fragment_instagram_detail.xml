@@ -26,34 +26,13 @@
     <ScrollView
             android:id="@+id/tagPost_detail_scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/BABY_POWDER"
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-            <androidx.cardview.widget.CardView
-                    android:layout_width="?attr/actionBarSize"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    app:cardCornerRadius="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/tagPost_detail_container"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-
-                <ImageButton
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitXY"
-                        android:tint="@color/grey_40"
-                        app:srcCompat="@drawable/ic_instagram" />
-
-            </androidx.cardview.widget.CardView>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,6 +44,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/tagPost_detail_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/colorPrimary"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="?attr/actionBarTheme"
+                        app:layout_constraintBottom_toTopOf="@+id/tagPost_detail_image"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                         android:id="@+id/tagPost_detail_image"
                         android:layout_width="match_parent"
@@ -74,6 +65,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/expand_views"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tagPost_detail_toolbar"
                         tools:src="@drawable/image_2" />
 
                 <LinearLayout
@@ -132,7 +124,7 @@
 
 
                         <TextView
-                                android:id="@+id/dialog_caption"
+                                android:id="@+id/tagPost_detail_caption"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"
@@ -211,6 +203,7 @@
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="8dp"
                                     android:text="@string/posted"
+                                    android:textColor="@color/grey_40"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -224,12 +217,13 @@
                                     android:layout_marginTop="8dp"
                                     android:layout_marginBottom="8dp"
                                     android:text="@{timeStamp}"
+                                    android:textColor="@color/grey_40"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toEndOf="@+id/posted"
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:text="place holder text" />
 
-                            
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                     </LinearLayout>

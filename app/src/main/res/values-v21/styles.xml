@@ -14,10 +14,6 @@
         <item name="android:progressBackgroundTint" tools:ignore="NewApi">@color/SIENNA</item>
     </style>
 
-    <!---Dialog Box-->
-    <style name="DialogBox" parent="Animation.Design.BottomSheetDialog">
-    </style>
-
     <style name="RippleStyleBlack" parent="RippleStyleWhite">
         <item name="mrl_rippleColor">#8096989A</item>
     </style>

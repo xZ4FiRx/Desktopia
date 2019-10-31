@@ -1,12 +1,10 @@
 package com.example.z4fir.desktopia.screens.showcase.instagram.adapter
 
-import android.content.Context
 import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
@@ -19,7 +17,6 @@ import java.lang.IllegalArgumentException
 import kotlin.properties.Delegates
 import androidx.recyclerview.widget.*
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
-import kotlin.coroutines.coroutineContext
 
 
 class InstagramTagAdapter : PagedListAdapter<Edges,
@@ -115,7 +112,7 @@ class InstagramTagAdapter : PagedListAdapter<Edges,
                         "shortCode: $shortCode\n" +
                         "caption: $caption")
 
-            view!!.findNavController().navigate(R.id.instagramDialogFragment, bundle)
+            view!!.findNavController().navigate(R.id.instagramDetailFragment, bundle)
         }
 
         fun bindTo(post: Edges?) {

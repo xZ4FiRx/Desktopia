@@ -12,16 +12,17 @@
             tools:layout="@layout/fragment_instagram_showcase">
         <action
                 android:id="@+id/action_gridFragment_to_instagramShowcaseFragment2"
-                app:destination="@id/instagramDialogFragment"
+                app:destination="@id/instagramDetailFragment"
                 app:launchSingleTop="false"
+                app:popUpTo="@+id/gridFragment"
                 app:popUpToInclusive="false" />
     </fragment>
 
 
     <fragment
-            android:id="@+id/instagramDialogFragment"
+            android:id="@+id/instagramDetailFragment"
             android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramDetailFragment"
-            android:label="InstagramDialogFragment" >
+            android:label="InstagramDetailFragment">
 
         <argument
                 android:name="url"
@@ -31,16 +32,19 @@
 
     <fragment
             android:id="@+id/showcaseLanding"
-            android:name="com.example.z4fir.desktopia.screens.showcase.ShowcaseLanding"
+            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.ShowcaseLanding"
             android:label="showcaseLanding" >
         <action
                 android:id="@+id/action_showcaseLanding_to_gridFragment"
                 app:destination="@id/gridFragment"
-                app:enterAnim="@anim/fragment_fade_enter" />
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:popUpTo="@+id/showcaseLanding" />
         <action
                 android:id="@+id/action_showcaseLanding_to_redditPostFragment"
                 app:destination="@id/redditPostFragment"
-                app:enterAnim="@anim/fragment_fade_enter" />
+                app:enterAnim="@anim/fragment_fade_enter"
+                app:popUpTo="@+id/instagramDetailFragment"
+                app:popUpToInclusive="true" />
     </fragment>
     <fragment
             android:id="@+id/redditPostFragment"

@@ -1,11 +1,12 @@
 package com.example.z4fir.desktopia.screens.showcase.instagram.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ScrollView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.z4fir.desktopia.R
 import com.example.z4fir.desktopia.databinding.FragmentInstagramDetailBinding
 import com.example.z4fir.desktopia.util.ViewAnimation
 import java.util.*
@@ -25,8 +26,36 @@ class InstagramDetailFragment : Fragment() {
     private var timeStamp: Long = 0
 
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.instagram_detail_menu, menu)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+
+        R.id.action_instagram_direct -> {
+
+            Toast.makeText(context, "This is the best way to kill someone who ", Toast.LENGTH_SHORT)
+            true
+
+        }
+
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentInstagramDetailBinding.inflate(LayoutInflater.from(parentFragment!!.context))
+
+        (activity as AppCompatActivity).setSupportActionBar(binding.tagPostDetailToolbar)
+
+        binding.tagPostDetailToolbar.title = ""
 
         captionExpanded = binding.expandedCaption
         infoExpanded = binding.expandedInfo
@@ -61,13 +90,11 @@ class InstagramDetailFragment : Fragment() {
 
         binding.url = url
 
-        if(caption.isEmpty())
-        {
+        if (caption.isEmpty()) {
             caption = "No caption available"
         }
 
         binding.caption = caption
-
     }
 
     private fun toggleSection(bt: View, lyt: View) {
