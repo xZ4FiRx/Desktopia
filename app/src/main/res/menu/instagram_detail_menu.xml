@@ -8,4 +8,10 @@
             android:title="@string/instagram"
             app:showAsAction="ifRoom"/>
 
+    <item
+            android:id="@+id/action_instagram_share"
+            android:icon="@drawable/ic_share_black_24dp"
+            android:title="@string/instagram"
+            app:showAsAction="ifRoom"/>
+
 </menu>

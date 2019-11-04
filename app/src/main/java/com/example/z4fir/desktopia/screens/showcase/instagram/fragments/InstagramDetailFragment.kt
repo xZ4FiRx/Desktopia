@@ -1,5 +1,7 @@
 package com.example.z4fir.desktopia.screens.showcase.instagram.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.ScrollView
@@ -40,9 +42,33 @@ class InstagramDetailFragment : Fragment() {
 
         R.id.action_instagram_direct -> {
 
-            Toast.makeText(context, "This is the best way to kill someone who ", Toast.LENGTH_SHORT)
-            true
+            val directLink = "https://instagram.com/p/${shortCode}"
+            val intent = Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = Uri.parse(directLink)
+            }
 
+            startActivity(intent)
+            true
+        }
+
+        R.id.action_instagram_share -> {
+
+            val directLink = "https://instagram.com/p/${shortCode}"
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT,"Check this out.\n" +
+                        "I found it using Desktopia.\n" +
+                        "$directLink")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, "Share this")
+            startActivity(shareIntent)
+
+
+
+            true
         }
 
         else -> {
@@ -54,6 +80,8 @@ class InstagramDetailFragment : Fragment() {
         binding = FragmentInstagramDetailBinding.inflate(LayoutInflater.from(parentFragment!!.context))
 
         (activity as AppCompatActivity).setSupportActionBar(binding.tagPostDetailToolbar)
+
+
 
         binding.tagPostDetailToolbar.title = ""
 

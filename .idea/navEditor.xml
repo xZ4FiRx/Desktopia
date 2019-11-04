@@ -19,7 +19,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_gridFragment_to_instagramDialogFragment2">
+                            <entry key="action_gridFragment_to_instagramShowcaseFragment2">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -29,13 +29,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="instagramDialogFragment">
+                  <entry key="instagramDetailFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="275" />
-                            <option name="y" value="-50" />
+                            <option name="x" value="261" />
+                            <option name="y" value="-32" />
                           </Point>
                         </option>
                       </LayoutPositions>

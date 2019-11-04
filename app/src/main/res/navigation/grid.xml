@@ -14,8 +14,7 @@
                 android:id="@+id/action_gridFragment_to_instagramShowcaseFragment2"
                 app:destination="@id/instagramDetailFragment"
                 app:launchSingleTop="false"
-                app:popUpTo="@+id/gridFragment"
-                app:popUpToInclusive="false" />
+                app:popUpTo="@+id/gridFragment" />
     </fragment>
 
 
