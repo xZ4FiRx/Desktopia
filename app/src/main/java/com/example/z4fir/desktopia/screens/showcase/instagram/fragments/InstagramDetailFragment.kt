@@ -8,6 +8,7 @@ import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.z4fir.desktopia.R
 import com.example.z4fir.desktopia.databinding.FragmentInstagramDetailBinding
 import com.example.z4fir.desktopia.util.ViewAnimation
@@ -57,7 +58,7 @@ class InstagramDetailFragment : Fragment() {
             val directLink = "https://instagram.com/p/${shortCode}"
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT,"Check this out.\n" +
+                putExtra(Intent.EXTRA_TEXT, "Check this out.\n" +
                         "I found it using Desktopia.\n" +
                         "$directLink")
                 type = "text/plain"
@@ -65,8 +66,6 @@ class InstagramDetailFragment : Fragment() {
 
             val shareIntent = Intent.createChooser(sendIntent, "Share this")
             startActivity(shareIntent)
-
-
 
             true
         }
@@ -76,14 +75,19 @@ class InstagramDetailFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         binding = FragmentInstagramDetailBinding.inflate(LayoutInflater.from(parentFragment!!.context))
 
         (activity as AppCompatActivity).setSupportActionBar(binding.tagPostDetailToolbar)
-
-
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         binding.tagPostDetailToolbar.title = ""
+        binding.tagPostDetailToolbar.setNavigationOnClickListener {
+                findNavController().navigateUp()
+        }
 
         captionExpanded = binding.expandedCaption
         infoExpanded = binding.expandedInfo
@@ -108,7 +112,6 @@ class InstagramDetailFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -121,7 +124,6 @@ class InstagramDetailFragment : Fragment() {
         if (caption.isEmpty()) {
             caption = "No caption available"
         }
-
         binding.caption = caption
     }
 

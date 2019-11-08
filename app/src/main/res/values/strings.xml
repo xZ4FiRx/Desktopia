@@ -15,10 +15,14 @@
     <string name="height">Height:</string>
     <string name="width">Width:</string>
     <string name="instagram">Instagram</string>
+    <string name="desksetup">#desksetup</string>
+    <string name="battlestation">#battlestation</string>
+
+
     <string-array name="hashtag_array">
         <item>#Battlestation</item>
-        <item>#Pcgamingsetup</item>
-        <item>#Workstation</item>
+        <item>#Desksetup</item>
+        <item>#Dreamsetup</item>
     </string-array>
 
 

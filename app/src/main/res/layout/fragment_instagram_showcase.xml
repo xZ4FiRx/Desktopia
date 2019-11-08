@@ -19,6 +19,7 @@
             android:background="@color/EERIE_BLACK"
             tools:context=".screens.showcase.instagram.fragments.InstagramShowcaseFragment">
 
+
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/showcase_toolbar"
                 android:layout_width="match_parent"
@@ -30,6 +31,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+        <LinearLayout
+                android:id="@+id/instagram_tab_selection"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/BABY_POWDER"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/swipe_refresh"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/showcase_toolbar">
+
+            <Button
+                    android:id="@+id/instagram_hashtag_button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/battlestation" />
+
+            <View
+                    android:id="@+id/view_divider"
+                    android:layout_width="1px"
+                    android:layout_height="45dp"
+                    android:background="@color/grey_10" />
+
+            <Button
+                    android:id="@+id/instagram_hashtag_button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/desksetup" />
+
+            <View
+                    android:id="@+id/view_divider2"
+                    android:layout_width="1px"
+                    android:layout_height="45dp"
+                    android:background="@color/grey_10" />
+
+            <Button
+                    android:id="@+id/instagram_hashtag_button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:text="@string/dreamsetup" />
+
+
+        </LinearLayout>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_refresh"
                 android:layout_width="match_parent"
@@ -37,7 +89,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/showcase_toolbar">
+                app:layout_constraintTop_toBottomOf="@+id/instagram_tab_selection">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/showcase_list"

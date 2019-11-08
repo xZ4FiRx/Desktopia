@@ -10,29 +10,24 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.z4fir.desktopia.util.setupWithNavController
 
 
-class MainActivity : AppCompatActivity()
-{
+class MainActivity : AppCompatActivity() {
     private var currentNavController: LiveData<NavController>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null)
-        {
+        if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?)
-    {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
         setupBottomNavigationBar()
     }
 
-    private fun setupBottomNavigationBar()
-    {
+    private fun setupBottomNavigationBar() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.nav_bottom_view)
         val navGraphIds = listOf(R.navigation.grid, R.navigation.purchase, R.navigation.help)
         val controller = bottomNavigation.setupWithNavController(
@@ -41,6 +36,7 @@ class MainActivity : AppCompatActivity()
             containerId = R.id.nav_host,
             intent = intent
         )
+
         currentNavController = controller
     }
 

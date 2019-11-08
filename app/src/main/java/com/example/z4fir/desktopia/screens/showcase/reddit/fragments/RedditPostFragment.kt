@@ -8,15 +8,12 @@ import androidx.fragment.app.Fragment
 import com.example.z4fir.desktopia.databinding.FragmentRedditShowcaseBinding
 
 
-class RedditPostFragment: Fragment()
-{
+class RedditPostFragment : Fragment() {
 
     private lateinit var binding: FragmentRedditShowcaseBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         binding = FragmentRedditShowcaseBinding.inflate(inflater)
-
         return binding.root
     }
 }

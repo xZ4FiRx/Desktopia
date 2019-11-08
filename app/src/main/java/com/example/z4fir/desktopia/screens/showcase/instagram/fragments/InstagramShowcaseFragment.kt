@@ -17,6 +17,8 @@ import com.example.z4fir.desktopia.screens.showcase.instagram.network.NetworkSta
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
 import com.example.z4fir.desktopia.util.SpacingItemDecoration
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import com.example.z4fir.desktopia.databinding.FragmentInstagramShowcaseBinding
 
 
@@ -35,6 +37,7 @@ class InstagramShowcaseFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString(KEY, model.currentHashtag())
         outState.putString("toolbar", toolbarTitle)
+        outState.putString("retain", "retain")
         super.onSaveInstanceState(outState)
     }
 
@@ -56,11 +59,8 @@ class InstagramShowcaseFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = model
 
-        toolbarTitle = savedInstanceState?.getString("toolbar") ?: ""
-
-        binding.showcaseToolbar.title = toolbarTitle
-
-        (activity as AppCompatActivity).setSupportActionBar(binding.showcaseToolbar)
+        setToolbar()
+        setHashButtons()
 
         return binding.root
     }
@@ -68,15 +68,80 @@ class InstagramShowcaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.swipeRefresh.setOnRefreshListener {
-            model.refreshList()
-        }
-
         initAdapter()
         initStates()
+
     }
 
+    private fun setToolbar() {
+
+        (activity as AppCompatActivity).setSupportActionBar(binding.showcaseToolbar)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
+
+        binding.showcaseToolbar.title = ""
+        binding.showcaseToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun setHashButtons() {
+
+        val button1 = binding.instagramHashtagButton1
+        val button2 = binding.instagramHashtagButton2
+        val button3 = binding.instagramHashtagButton3
+
+        button1.isEnabled = false
+
+        button1.setOnClickListener {
+
+            if (!binding.swipeRefresh.isRefreshing) {
+
+                model.addingHashtag("battlestation")
+                refreshLayout()
+                model.refreshList()
+
+                button1.isEnabled = false
+                button2.isEnabled = true
+                button3.isEnabled = true
+            }
+        }
+
+        button2.setOnClickListener {
+
+            if (!binding.swipeRefresh.isRefreshing) {
+
+                model.addingHashtag("desksetup")
+                model.refreshList()
+                refreshLayout()
+
+                button1.isEnabled = true
+                button2.isEnabled = false
+                button3.isEnabled = true
+            }
+        }
+
+        button3.setOnClickListener {
+
+            if (!binding.swipeRefresh.isRefreshing) {
+
+                model.addingHashtag("dreamsetup")
+                model.refreshList()
+                refreshLayout()
+
+                button1.isEnabled = true
+                button2.isEnabled = true
+                button3.isEnabled = false
+            }
+        }
+    }
+
+
     private fun initAdapter() {
+
+        val button1 = binding.instagramHashtagButton1
+        val button2 = binding.instagramHashtagButton2
+        val button3 = binding.instagramHashtagButton3
 
         binding.showcaseList.adapter = adapter
 
@@ -94,7 +159,15 @@ class InstagramShowcaseFragment : Fragment() {
             4, true), 0)
 
         model.post.observe(this, Observer<PagedList<Edges>> {
+
             adapter.submitList(it)
+
+            when(model.currentHashtag()){
+
+                "battlestation" -> {button1.isEnabled = false}
+                "desksetup" -> {button2.isEnabled = false}
+                "pcbuilds" -> {button3.isEnabled = false}
+            }
         })
     }
 
@@ -106,6 +179,10 @@ class InstagramShowcaseFragment : Fragment() {
         model.networkState.observe(this, Observer {
             adapter.setNetworkState(it)
         })
+
+        binding.swipeRefresh.setOnRefreshListener {
+            model.refreshList()
+        }
 
         model.refreshState.observe(this, Observer {
 
@@ -124,54 +201,4 @@ class InstagramShowcaseFragment : Fragment() {
         binding.swipeRefresh.isRefreshing = true
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.instagram_showcase_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-
-        R.id.action_selection -> {
-
-            binding.showcaseToolbar.title = toolbarTitle
-
-            val builder = AlertDialog.Builder(activity)
-            builder.setTitle(R.string.hashtag_chooser)
-
-                .setItems(R.array.hashtag_array) { dialog, id ->
-
-                    when (id) {
-                        0 -> {
-                            toolbarTitle = "#Battlestation"
-                            model.addingHashtag("battlestation")
-                            refreshLayout()
-                            model.refreshList()
-                            dialog.dismiss()
-
-                        }
-                        1 -> {
-                            toolbarTitle = "#Pcgamingsetup"
-                            model.addingHashtag("pcgamingsetup")
-                            refreshLayout()
-                            model.refreshList()
-                            dialog.dismiss()
-                        }
-                        2 -> {
-                            toolbarTitle = "#Workstation"
-                            model.addingHashtag("cat")
-                            refreshLayout()
-                            model.refreshList()
-                            dialog.dismiss()
-                        }
-                    }
-                }
-
-            builder.show()
-            true
-        }
-
-        else -> {
-            super.onOptionsItemSelected(item)
-        }
-    }
 }

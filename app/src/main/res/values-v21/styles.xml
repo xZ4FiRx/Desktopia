@@ -8,11 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!--- Progress -->
-    <style name="CircularProgress" parent="Base.Widget.AppCompat.ProgressBar">
-        <item name="colorAccent">@color/EERIE_BLACK</item>
-        <item name="android:progressBackgroundTint" tools:ignore="NewApi">@color/SIENNA</item>
-    </style>
 
     <style name="RippleStyleBlack" parent="RippleStyleWhite">
         <item name="mrl_rippleColor">#8096989A</item>
@@ -26,5 +21,19 @@
         <item name="mrl_rippleAlpha">0.2</item>
     </style>
 
+
+    <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@android:color/white</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/CustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">@android:color/white</item>
+    </style>
+
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/grey_10</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">true</item>
+    </style>
 
 </resources>

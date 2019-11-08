@@ -11,10 +11,11 @@
             android:label="fragment_insta_feed"
             tools:layout="@layout/fragment_instagram_showcase">
         <action
-                android:id="@+id/action_gridFragment_to_instagramShowcaseFragment2"
+                android:id="@+id/action_gridFragment_to_instagramDetailFragment"
                 app:destination="@id/instagramDetailFragment"
                 app:launchSingleTop="false"
-                app:popUpTo="@+id/gridFragment" />
+                app:popUpTo="@+id/gridFragment"
+                app:popUpToInclusive="false" />
     </fragment>
 
 
@@ -31,7 +32,7 @@
 
     <fragment
             android:id="@+id/showcaseLanding"
-            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.ShowcaseLanding"
+            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.ShowcaseLandingFragment"
             android:label="showcaseLanding" >
         <action
                 android:id="@+id/action_showcaseLanding_to_gridFragment"

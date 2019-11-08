@@ -10,7 +10,7 @@ import com.example.z4fir.desktopia.R
 import com.example.z4fir.desktopia.databinding.FragmentShowcaseLandingBinding
 
 
-class ShowcaseLanding : Fragment() {
+class ShowcaseLandingFragment : Fragment() {
 
     private lateinit var binding: FragmentShowcaseLandingBinding
 
@@ -25,7 +25,6 @@ class ShowcaseLanding : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         val instagramButton = binding.instagramImageButton
         val redditButton = binding.redditImageButton
