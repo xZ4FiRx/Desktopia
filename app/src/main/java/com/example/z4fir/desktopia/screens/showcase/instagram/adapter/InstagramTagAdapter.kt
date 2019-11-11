@@ -11,12 +11,13 @@ import androidx.paging.PagedListAdapter
 import com.example.z4fir.desktopia.R
 import com.example.z4fir.desktopia.databinding.InstagramGridViewItemBinding
 import com.example.z4fir.desktopia.databinding.NetworkStateLayoutBinding
-import com.example.z4fir.desktopia.screens.showcase.instagram.network.NetworkState
-import com.example.z4fir.desktopia.screens.showcase.instagram.network.Status
+import com.example.z4fir.desktopia.util.NetworkState
+import com.example.z4fir.desktopia.util.Status
 import java.lang.IllegalArgumentException
 import kotlin.properties.Delegates
 import androidx.recyclerview.widget.*
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
+import com.example.z4fir.desktopia.util.NetworkStateViewHolder
 
 
 class InstagramTagAdapter : PagedListAdapter<Edges,
@@ -132,27 +133,4 @@ class InstagramTagAdapter : PagedListAdapter<Edges,
         }
     }
 
-    internal class NetworkStateViewHolder(binding: NetworkStateLayoutBinding)
-        : RecyclerView.ViewHolder(binding.root) {
-
-        private val progressBar = binding.networkProgressBar
-
-        fun bindView(networkState: NetworkState?) {
-
-            if( android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP)
-            {
-                progressBar.indeterminateDrawable
-                    .setColorFilter(0xABABAB,PorterDuff.Mode.ADD)
-            }
-            progressBar.visibility = toVisibility(networkState?.status == Status.RUNNING)
-        }
-
-        private fun toVisibility(constraint: Boolean): Int {
-            return if (constraint) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
-        }
-    }
 }

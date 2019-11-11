@@ -1,6 +1,5 @@
 package com.example.z4fir.desktopia.screens.showcase.instagram.fragments
 
-import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 
@@ -12,12 +11,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.z4fir.desktopia.R
-import com.example.z4fir.desktopia.screens.showcase.instagram.ui.ShowcaseViewModel
-import com.example.z4fir.desktopia.screens.showcase.instagram.network.NetworkState
+import com.example.z4fir.desktopia.screens.showcase.instagram.ui.InstagramViewModel
+import com.example.z4fir.desktopia.util.NetworkState
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
 import com.example.z4fir.desktopia.util.SpacingItemDecoration
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.example.z4fir.desktopia.databinding.FragmentInstagramShowcaseBinding
 
@@ -30,22 +28,20 @@ class InstagramShowcaseFragment : Fragment() {
     }
 
     private lateinit var binding: FragmentInstagramShowcaseBinding
-    private lateinit var model: ShowcaseViewModel
+    private lateinit var model: InstagramViewModel
     private val adapter = InstagramTagAdapter()
-    private var toolbarTitle = ""
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putString(KEY, model.currentHashtag())
-        outState.putString("toolbar", toolbarTitle)
-        outState.putString("retain", "retain")
         super.onSaveInstanceState(outState)
+        outState.putString(KEY, model.currentHashtag())
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        model = ViewModelProviders.of(this).get(ShowcaseViewModel(activity!!.application)::class.java)
+        model = ViewModelProviders.of(this).get(InstagramViewModel(activity!!.application)::class.java)
 
         val hashtag = savedInstanceState?.getString(KEY) ?: DEFAULT_HASHTAG
         model.addingHashtag(hashtag)
@@ -60,7 +56,7 @@ class InstagramShowcaseFragment : Fragment() {
         binding.viewModel = model
 
         setToolbar()
-        setHashButtons()
+        setHashTagButtons()
 
         return binding.root
     }
@@ -70,22 +66,21 @@ class InstagramShowcaseFragment : Fragment() {
 
         initAdapter()
         initStates()
-
     }
 
     private fun setToolbar() {
 
-        (activity as AppCompatActivity).setSupportActionBar(binding.showcaseToolbar)
+        (activity as AppCompatActivity).setSupportActionBar(binding.showcaseInstagramToolbar)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        binding.showcaseToolbar.title = ""
-        binding.showcaseToolbar.setNavigationOnClickListener {
+        binding.showcaseInstagramToolbar.title = ""
+        binding.showcaseInstagramToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
     }
 
-    private fun setHashButtons() {
+    private fun setHashTagButtons() {
 
         val button1 = binding.instagramHashtagButton1
         val button2 = binding.instagramHashtagButton2
@@ -136,14 +131,13 @@ class InstagramShowcaseFragment : Fragment() {
         }
     }
 
-
     private fun initAdapter() {
 
         val button1 = binding.instagramHashtagButton1
         val button2 = binding.instagramHashtagButton2
         val button3 = binding.instagramHashtagButton3
 
-        binding.showcaseList.adapter = adapter
+        binding.showcaseInstagramList.adapter = adapter
 
         val gm = GridLayoutManager(activity, 2)
         gm.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -154,8 +148,8 @@ class InstagramShowcaseFragment : Fragment() {
             }
         }
 
-        binding.showcaseList.layoutManager = gm
-        binding.showcaseList.addItemDecoration(SpacingItemDecoration(2,
+        binding.showcaseInstagramList.layoutManager = gm
+        binding.showcaseInstagramList.addItemDecoration(SpacingItemDecoration(2,
             4, true), 0)
 
         model.post.observe(this, Observer<PagedList<Edges>> {
@@ -174,7 +168,7 @@ class InstagramShowcaseFragment : Fragment() {
     private fun initStates() {
 
         val swipe = binding.swipeRefresh
-        val recyclerview = binding.showcaseList
+        val recyclerview = binding.showcaseInstagramList
 
         model.networkState.observe(this, Observer {
             adapter.setNetworkState(it)

@@ -17,12 +17,14 @@
     <string name="instagram">Instagram</string>
     <string name="desksetup">#desksetup</string>
     <string name="battlestation">#battlestation</string>
+    <string name="listing">Listing</string>
 
 
-    <string-array name="hashtag_array">
-        <item>#Battlestation</item>
-        <item>#Desksetup</item>
-        <item>#Dreamsetup</item>
+    <string-array name="subreddits_array">
+        <item>hot</item>
+        <item>new</item>
+        <item>rising</item>
+        <item>top</item>
     </string-array>
 
 

@@ -13,5 +13,4 @@
             android:icon="@drawable/ic_share_black_24dp"
             android:title="@string/instagram"
             app:showAsAction="ifRoom"/>
-
 </menu>

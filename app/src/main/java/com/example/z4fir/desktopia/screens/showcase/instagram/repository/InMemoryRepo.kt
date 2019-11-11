@@ -5,22 +5,21 @@ import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
 import com.example.z4fir.desktopia.screens.showcase.instagram.network.InstagramTagApiService
-import com.example.z4fir.desktopia.screens.showcase.instagram.ui.ItemDataSourceFactory
+import com.example.z4fir.desktopia.screens.showcase.instagram.ui.PageDataSourceFactoryInstagram
 
 class InMemoryRepo {
 
-    fun tagPostOfInstagram(hashtag: String, apiService: InstagramTagApiService): Listing<Edges>{
+    fun tagPostOfInstagram(hashtag: String, apiService: InstagramTagApiService): Listing<Edges> {
 
-        val factory = ItemDataSourceFactory(hashtag, apiService)
+        val factory = PageDataSourceFactoryInstagram(hashtag, apiService)
 
         val pagedList = factory.toLiveData(config = Config(
             pageSize = 20,
             enablePlaceholders = false,
-            initialLoadSizeHint = 40
-        ))
+            initialLoadSizeHint = 40))
 
-        val refreshState = Transformations.switchMap(factory.source){it.initialLoad}
-        val networkState = Transformations.switchMap(factory.source){it.networkState}
+        val refreshState = Transformations.switchMap(factory.source) { it.initialLoad }
+        val networkState = Transformations.switchMap(factory.source) { it.networkState }
 
         return Listing(
             pagedList = pagedList,

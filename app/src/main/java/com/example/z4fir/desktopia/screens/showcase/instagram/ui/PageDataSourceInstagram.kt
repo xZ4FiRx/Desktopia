@@ -6,10 +6,10 @@ import androidx.paging.PageKeyedDataSource
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.Edges
 import com.example.z4fir.desktopia.screens.showcase.instagram.model.InstagramResponse
 import com.example.z4fir.desktopia.screens.showcase.instagram.network.InstagramTagApiService
-import com.example.z4fir.desktopia.screens.showcase.instagram.network.NetworkState
+import com.example.z4fir.desktopia.util.NetworkState
 import java.lang.Exception
 
-class ItemDataSource(private val hashTag: String,
+class PageDataSourceInstagram(private val hashTag: String,
     private val apiService: InstagramTagApiService) : PageKeyedDataSource<String, Edges>() {
 
     private lateinit var endCursor: String
@@ -31,12 +31,12 @@ class ItemDataSource(private val hashTag: String,
             networkState.postValue(NetworkState.LOADED)
             initialLoad.postValue(NetworkState.LOADED)
             callback.onResult(responseFilter(response), null, endCursor)
-            Log.i("ItemDataSource\n", "LoadInitial response successful\n" +
+            Log.i("PageDataSourceInsta\n", "LoadInitial response successful\n" +
                     "List size: ${responseFilter(response).size}\n" +
                     "End Cursor: $endCursor")
 
         } catch (e: Exception) {
-            Log.e("ItemDataSource", "Failed to get data\n $e")
+            Log.e("PageDataSourceInstagram", "Failed to get data\n $e")
             val error = NetworkState.error(e.message ?: "unknown error")
             networkState.postValue(error)
             initialLoad.postValue(error)
@@ -56,7 +56,7 @@ class ItemDataSource(private val hashTag: String,
             }
             callback.onResult(responseFilter(response), endCursor)
             networkState.postValue(NetworkState.LOADED)
-            Log.i("ItemDataSource\n", "loadAfter response successful\n" +
+            Log.i("PageDataSourceInstagram\n", "loadAfter response successful\n" +
                     "List size: ${responseFilter(response).size}\n" +
                     "End Cursor: $endCursor")
 

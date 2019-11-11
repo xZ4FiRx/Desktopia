@@ -1,4 +1,4 @@
-package com.example.z4fir.desktopia.screens.showcase.instagram.network
+package com.example.z4fir.desktopia.util
 
 enum class Status {
     RUNNING,

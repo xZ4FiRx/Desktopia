@@ -1,4 +1,4 @@
-package com.example.z4fir.desktopia.screens.showcase.instagram.fragments
+package com.example.z4fir.desktopia.screens.showcase
 
 import android.os.Bundle
 import android.view.LayoutInflater

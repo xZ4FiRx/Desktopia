@@ -32,23 +32,23 @@
 
     <fragment
             android:id="@+id/showcaseLanding"
-            android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.ShowcaseLandingFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.ShowcaseLandingFragment"
             android:label="showcaseLanding" >
         <action
                 android:id="@+id/action_showcaseLanding_to_gridFragment"
                 app:destination="@id/gridFragment"
                 app:enterAnim="@anim/fragment_fade_enter"
-                app:popUpTo="@+id/showcaseLanding" />
+                app:popEnterAnim="@anim/fragment_fade_enter" />
         <action
                 android:id="@+id/action_showcaseLanding_to_redditPostFragment"
                 app:destination="@id/redditPostFragment"
                 app:enterAnim="@anim/fragment_fade_enter"
-                app:popUpTo="@+id/instagramDetailFragment"
+                app:popEnterAnim="@anim/fragment_fade_enter"
                 app:popUpToInclusive="true" />
     </fragment>
     <fragment
             android:id="@+id/redditPostFragment"
-            android:name="com.example.z4fir.desktopia.screens.showcase.reddit.fragments.RedditPostFragment"
+            android:name="com.example.z4fir.desktopia.screens.showcase.reddit.fragments.RedditShowcaseFragment"
             android:label="RedditPostFragment" />
 
 </navigation>

@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="com.example.z4fir.desktopia.screens.showcase.instagram.ui.ShowcaseViewModel" />
+                type="com.example.z4fir.desktopia.screens.showcase.instagram.ui.InstagramViewModel" />
 
     </data>
 
@@ -21,7 +21,7 @@
 
 
         <androidx.appcompat.widget.Toolbar
-                android:id="@+id/showcase_toolbar"
+                android:id="@+id/showcase_instagram_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
@@ -41,7 +41,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/swipe_refresh"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/showcase_toolbar">
+                app:layout_constraintTop_toBottomOf="@+id/showcase_instagram_toolbar">
 
             <Button
                     android:id="@+id/instagram_hashtag_button1"
@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/instagram_tab_selection">
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/showcase_list"
+                    android:id="@+id/showcase_instagram_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scrollbars="vertical"

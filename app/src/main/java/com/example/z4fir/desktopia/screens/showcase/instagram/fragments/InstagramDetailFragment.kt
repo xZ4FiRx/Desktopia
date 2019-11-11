@@ -122,8 +122,10 @@ class InstagramDetailFragment : Fragment() {
         binding.url = url
 
         if (caption.isEmpty()) {
+
             caption = "No caption available"
         }
+
         binding.caption = caption
     }
 

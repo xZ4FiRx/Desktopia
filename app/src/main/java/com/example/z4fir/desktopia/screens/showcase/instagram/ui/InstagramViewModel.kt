@@ -4,13 +4,13 @@ import android.app.Application
 import androidx.lifecycle.*
 import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.Transformations.switchMap
-import com.example.z4fir.desktopia.screens.showcase.instagram.network.ApiService
+import com.example.z4fir.desktopia.screens.showcase.instagram.network.ApiServiceInstagram
 import com.example.z4fir.desktopia.screens.showcase.instagram.repository.InMemoryRepo
 
-class ShowcaseViewModel(application: Application) : AndroidViewModel(application) {
+class InstagramViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    private val dataService = ApiService.retrofitService
+    private val dataService = ApiServiceInstagram.retrofitService
     private val hashtagString = MutableLiveData<String>()
     private val repo = InMemoryRepo()
     private val hashtagResult = map(hashtagString) {

@@ -24,7 +24,6 @@ val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-//Changing Call to Deferred for Room/ Repo implementation
 interface InstagramTagApiService {
     @GET("tags/{tag}/?__a=1&max_id=")
     fun getInstagramTagData(@Path("tag") hashtag: String): Call<InstagramResponse>
@@ -35,7 +34,7 @@ interface InstagramTagApiService {
 
 }
 
-object ApiService {
+object ApiServiceInstagram {
 
     val retrofitService: InstagramTagApiService by lazy {
         retrofit.create(InstagramTagApiService::class.java)

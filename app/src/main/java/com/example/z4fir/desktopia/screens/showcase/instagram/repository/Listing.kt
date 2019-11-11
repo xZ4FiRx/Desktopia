@@ -2,7 +2,7 @@ package com.example.z4fir.desktopia.screens.showcase.instagram.repository
 
 import androidx.lifecycle.LiveData
 import androidx.paging.PagedList
-import com.example.z4fir.desktopia.screens.showcase.instagram.network.NetworkState
+import com.example.z4fir.desktopia.util.NetworkState
 
 data class Listing<T>(
     val pagedList: LiveData<PagedList<T>>,
