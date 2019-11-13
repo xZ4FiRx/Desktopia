@@ -25,6 +25,7 @@ class PageDataSourceInstagram(private val hashTag: String,
         try {
 
             val response = call.execute().body()
+
             if (response!!.graphql.hashtag.edgeHashtagToMedia.pageInfo.hasNextPage) {
                 endCursor = response.graphql.hashtag.edgeHashtagToMedia.pageInfo.endCursor
             }
