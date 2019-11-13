@@ -23,7 +23,7 @@ class RedditPost(
     @Json(name = "name") val name: String,
     @Json(name = "secure_media") val secureMedia: SecureMedia?,
     @Json(name = "score") val score: Int,
-    @Json(name = "preview") val preview: PreviewImages,
+    @Json(name = "preview") val preview: PreviewImages?,
     @Json(name = "num_comments") val num_comments: Int,
     @Json(name = "created") val created: Long,
     @Json(name = "thumbnail") val thumbnail: String,

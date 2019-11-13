@@ -10,13 +10,14 @@ import com.example.z4fir.desktopia.screens.showcase.reddit.repo.InMemoryRepoRedd
 class RedditViewModel : ViewModel() {
 
     private val service = ApiServiceReddit.retrofitService
-    private val subredditString = MutableLiveData<String>()
-    val listingString = MutableLiveData<String>()
+     val subredditString = MutableLiveData<String>()
+    private val listingString = MutableLiveData<String>()
     private val repo = InMemoryRepoReddit()
     private val subredditResult = map(subredditString) {
         repo.redditPost(it, listingString.value!!, service)
     }
 
+    //
     val post = Transformations.switchMap(subredditResult) { it.pagedList }
     val networkState = Transformations.switchMap(subredditResult) { it.networkState }
     val refreshState = Transformations.switchMap(subredditResult) { it.refreshState }
@@ -42,4 +43,23 @@ class RedditViewModel : ViewModel() {
 
     fun currentSubreddit(): String? = subredditString.value
     fun currentListing(): String? = listingString.value
+
+    fun setListing(listing: String) {
+
+        when (listing) {
+
+            "hot" -> {
+                listingString.value = "hot"
+            }
+            "new" -> {
+                listingString.value = "new"
+            }
+            "rising" -> {
+                listingString.value = "rising"
+            }
+            "top" -> {
+                listingString.value = "top"
+            }
+        }
+    }
 }

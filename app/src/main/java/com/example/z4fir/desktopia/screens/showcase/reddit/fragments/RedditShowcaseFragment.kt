@@ -48,11 +48,13 @@ class RedditShowcaseFragment : Fragment() {
                     when (id) {
 
                         0 -> {
-                            model.selectListing("hot")
+                            model.setListing("hot")
                             dialog.dismiss()
                         }
                         1 -> {
-                            model.listingString.value = "new"
+                            binding.showcaseRedditToolbar.title = "New"
+                            model.setListing("new")
+                            model.subredditString.value = KEY_SUB
                             model.refreshList()
                             dialog.dismiss()
                         }
@@ -89,6 +91,8 @@ class RedditShowcaseFragment : Fragment() {
 
         val listing = savedInstanceState?.getString(KEY_LISTING) ?: DEFAULT_LISTING
         model.selectListing(listing)
+
+        initAdapter()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -96,14 +100,18 @@ class RedditShowcaseFragment : Fragment() {
         //to use a LiveData object, this has to be added.
         binding.lifecycleOwner = this
         binding.viewModel = model
+
+        binding.showcaseRedditList.adapter = adapter
+        val ll = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.showcaseRedditList.layoutManager = ll
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAdapter()
-        initStates()
+        initRefresh()
         setToolbar()
     }
 
@@ -121,10 +129,6 @@ class RedditShowcaseFragment : Fragment() {
 
     private fun initAdapter() {
 
-        binding.showcaseRedditList.adapter = adapter
-        val ll = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        binding.showcaseRedditList.layoutManager = ll
-
         model.post.observe(this, Observer<PagedList<RedditPost>> {
             adapter.submitList(it)
         })
@@ -134,7 +138,7 @@ class RedditShowcaseFragment : Fragment() {
         })
     }
 
-    private fun initStates() {
+    private fun initRefresh() {
 
         val swipe = binding.showcaseRedditSwipe
 
