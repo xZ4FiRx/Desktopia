@@ -18,13 +18,21 @@
     <string name="desksetup">#desksetup</string>
     <string name="battlestation">#battlestation</string>
     <string name="listing">Listing</string>
+    <string name="subreddit">Subreddit</string>
 
 
-    <string-array name="subreddits_array">
+    <string-array name="listing_array">
         <item>hot</item>
         <item>new</item>
         <item>rising</item>
         <item>top</item>
+    </string-array>
+
+    <string-array name="subreddit_array">
+        <item>Average</item>
+        <item>Battletops</item>
+        <item>Console</item>
+        <item>Shitty</item>
     </string-array>
 
 

@@ -130,7 +130,7 @@ class RedditShowcaseFragment : Fragment() {
             val currentSub = model.currentSubreddit()
             val builder = AlertDialog.Builder(context!!)
             builder.setTitle("Filter by listing")
-                .setItems(R.array.subreddits_array) { dialog, id ->
+                .setItems(R.array.listing_array) { dialog, id ->
 
                     when (id) {
 
@@ -168,6 +168,35 @@ class RedditShowcaseFragment : Fragment() {
 
             builder.show()
             true
+        }
+        R.id.reddit_subreddit_picker -> {
+
+            val builder = AlertDialog.Builder(context!!)
+            builder.setTitle("Filter by listing")
+                .setItems(R.array.subreddit_array) { dialog, id ->
+
+                    when (id) {
+                        0 -> {
+                            model.subredditString.value = "averageBattlestations"
+                            dialog.dismiss()
+                        }
+                        1 -> {
+                            model.subredditString.value = "battletop"
+                            dialog.dismiss()
+                        }
+                        2 -> {
+                            model.subredditString.value = "consolebattlestations"
+                            dialog.dismiss()
+                        }
+                        3 -> {
+                            model.subredditString.value = "shittybattlestations"
+                            dialog.dismiss()
+                        }
+                    }
+                }
+            builder.show()
+            true
+
         }
         else -> super.onOptionsItemSelected(item)
     }

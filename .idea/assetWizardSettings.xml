@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_filter_list_black_24dp" />
-                            <entry key="sourceFile" value="Z:\z4fir\Dropbox\Pictures\Mis\Graphics\Icons\Applicattions\Desktopia\SVG\instagram.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_subreddit" />
+                            <entry key="sourceFile" value="C:\Users\z4fir\Downloads\subreddit.svg" />
                           </map>
                         </option>
                       </PersistentState>

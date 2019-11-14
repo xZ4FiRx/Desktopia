@@ -17,7 +17,7 @@ class RedditChildren(
 
 
 class RedditPost(
-    @Json(name = "subreddit") val subreddit: String,
+    @Json(name = "subreddit") val subreddit: String?,
     @Json(name = "author") val author: String,
     @Json(name = "title") val title: String,
     @Json(name = "name") val name: String,

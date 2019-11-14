@@ -7,11 +7,11 @@
             android:id="@+id/reddit_listing"
             android:title="@string/listing"
             android:icon="@drawable/ic_filter_list_black_24dp"
-            app:showAsAction="ifRoom"/>
+            app:showAsAction="never"/>
 
     <item
             android:id="@+id/reddit_subreddit_picker"
-            android:title="@string/listing"
-            android:icon="@drawable/ic_filter_list_black_24dp"
+            android:title="@string/subreddit"
+            android:icon="@drawable/ic_subreddit"
             app:showAsAction="ifRoom"/>
 </menu>
