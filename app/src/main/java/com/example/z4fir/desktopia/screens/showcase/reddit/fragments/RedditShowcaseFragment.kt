@@ -23,69 +23,21 @@ class RedditShowcaseFragment : Fragment() {
     companion object {
         const val KEY_SUB = "subreddit"
         const val KEY_LISTING = "listing"
-        const val KEY_TITLE = "title"
         const val DEFAULT_SUBREDDIT = "battlestations"
         const val DEFAULT_LISTING = "hot"
+        const val KEY_TITLE = "title"
     }
 
     private lateinit var binding: FragmentRedditShowcaseBinding
     private lateinit var model: RedditViewModel
     private val adapter = RedditPostAdapter()
-    private val currentTitle = ""
+    private lateinit var title: String
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(KEY_SUB, model.currentSubreddit())
         outState.putString(KEY_LISTING, model.currentListing())
-        outState.putString(KEY_TITLE, currentTitle)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-
-        R.id.reddit_listing -> {
-
-            val currentSub = model.currentSubreddit()
-            val builder = AlertDialog.Builder(context!!)
-            builder.setTitle("Filter by listing")
-                .setItems(R.array.subreddits_array) { dialog, id ->
-
-                    when (id) {
-
-                        0 -> {
-                            binding.showcaseRedditToolbar.title = "Hot"
-                            model.setListing("hot")
-                            model.subredditString.value = currentSub
-                            model.refreshList()
-                            dialog.dismiss()
-                        }
-                        1 -> {
-                            binding.showcaseRedditToolbar.title = "New"
-                            model.setListing("new")
-                            model.subredditString.value = currentSub
-                            model.refreshList()
-                            dialog.dismiss()
-                        }
-                        2 -> {
-                            binding.showcaseRedditToolbar.title = "Rising"
-                            model.setListing("rising")
-                            model.subredditString.value = currentSub
-                            model.refreshList()
-                            dialog.dismiss()
-                        }
-                        3 -> {
-                            binding.showcaseRedditToolbar.title = "Top"
-                            model.setListing("top")
-                            model.subredditString.value = currentSub
-                            model.refreshList()
-                            dialog.dismiss()
-                        }
-                    }
-                }
-
-            builder.show()
-            true
-        }
-        else -> super.onOptionsItemSelected(item)
+        outState.putString(KEY_TITLE, title)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -106,7 +58,10 @@ class RedditShowcaseFragment : Fragment() {
         val listing = savedInstanceState?.getString(KEY_LISTING) ?: DEFAULT_LISTING
         model.selectListing(listing)
 
+        title = "r/${model.currentSubreddit()} - ${model.currentListing()}"
+
         initAdapter()
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -114,6 +69,9 @@ class RedditShowcaseFragment : Fragment() {
         //to use a LiveData object, this has to be added.
         binding.lifecycleOwner = this
         binding.viewModel = model
+
+        binding.showcaseRedditToolbar.title = savedInstanceState?.getString(KEY_TITLE)
+            ?: "r/${model.currentSubreddit()} - ${model.currentListing()}"
 
         binding.showcaseRedditList.adapter = adapter
         val ll = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -135,7 +93,6 @@ class RedditShowcaseFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        binding.showcaseRedditToolbar.title = ""
         binding.showcaseRedditToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
@@ -145,6 +102,7 @@ class RedditShowcaseFragment : Fragment() {
 
         model.post.observe(this, Observer<PagedList<RedditPost>> {
             adapter.submitList(it)
+
         })
 
         model.networkState.observe(this, Observer {
@@ -163,5 +121,54 @@ class RedditShowcaseFragment : Fragment() {
         model.refreshState.observe(this, Observer {
             swipe.isRefreshing = it == NetworkState.LOADING
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+
+        R.id.reddit_listing -> {
+
+            val currentSub = model.currentSubreddit()
+            val builder = AlertDialog.Builder(context!!)
+            builder.setTitle("Filter by listing")
+                .setItems(R.array.subreddits_array) { dialog, id ->
+
+                    when (id) {
+
+                        0 -> {
+
+                            model.setListing("hot")
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - Hot"
+                            model.subredditString.value = currentSub
+                            model.refreshList()
+                            dialog.dismiss()
+                        }
+                        1 -> {
+                            model.setListing("new")
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - New"
+                            model.subredditString.value = currentSub
+                            model.refreshList()
+                            dialog.dismiss()
+                        }
+                        2 -> {
+                            model.setListing("rising")
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - Rising"
+                            model.subredditString.value = currentSub
+                            model.refreshList()
+                            dialog.dismiss()
+                        }
+                        3 -> {
+                            model.setListing("top")
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - Top(24hr)"
+                            model.subredditString.value = currentSub
+                            model.refreshList()
+                            dialog.dismiss()
+                        }
+                    }
+                }
+
+            builder.show()
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
     }
 }

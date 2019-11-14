@@ -41,8 +41,8 @@ class RedditViewModel : ViewModel() {
         subredditResult.value?.refresh?.invoke()
     }
 
-    fun currentSubreddit(): String? = subredditString.value
-    fun currentListing(): String? = listingString.value
+    fun currentSubreddit(): String? = subredditString.value?.capitalize()
+    fun currentListing(): String? = listingString.value?.capitalize()
 
     fun setListing(listing: String) {
 
