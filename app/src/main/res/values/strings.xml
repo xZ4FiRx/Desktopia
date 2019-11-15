@@ -29,10 +29,10 @@
     </string-array>
 
     <string-array name="subreddit_array">
-        <item>Average</item>
+        <item>Battlestations</item>
+        <item>Average Battlestations</item>
         <item>Battletops</item>
-        <item>Console</item>
-        <item>Shitty</item>
+        <item>Shitty Battlestations</item>
     </string-array>
 
 

@@ -9,7 +9,9 @@ import com.example.z4fir.desktopia.util.NetworkState
 import java.io.IOException
 
 
-class PageDataSourceReddit(private val subreddit: String, private val listing: String,
+class PageDataSourceReddit(
+    private val subreddit: String,
+    private val listing: String,
     private val apiService: RedditPostApiService) : PageKeyedDataSource<String, RedditPost>() {
 
     val networkState = MutableLiveData<NetworkState>()
@@ -28,19 +30,20 @@ class PageDataSourceReddit(private val subreddit: String, private val listing: S
             val response = request.execute()
             val data = response.body()?.data
             val items = data?.children?.map { it.data } ?: emptyList()
+
             val filterInput = items.filter { !it.stickied }
+            val filterSelf = filterInput.filter { !it.isSelf }
 
             networkState.postValue(NetworkState.LOADED)
             initialLoad.postValue(NetworkState.LOADED)
 
-            callback.onResult(filterInput, data?.before, data?.after)
+            callback.onResult(filterSelf, data?.before, data?.after)
         } catch (io: IOException) {
 
             val error = NetworkState.error(io.message ?: "unknown error")
             networkState.postValue(error)
             initialLoad.postValue(error)
         }
-
     }
 
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, RedditPost>) {
@@ -56,14 +59,14 @@ class PageDataSourceReddit(private val subreddit: String, private val listing: S
             val data = response.body()?.data
             val items = data?.children?.map { it.data } ?: emptyList()
             val filterInput = items.filter { !it.stickied }
-
+            val filterSelf = filterInput.filter { !it.isSelf }
 
             networkState.postValue(NetworkState.LOADED)
             initialLoad.postValue(NetworkState.LOADED)
 
             Log.i("PagedDataSourceReddit", data?.before + " after: " + data?.after)
 
-            callback.onResult(filterInput, data?.after)
+            callback.onResult(filterSelf, data?.after)
         } catch (io: IOException) {
 
             val error = NetworkState.error(io.message ?: "unknown error")

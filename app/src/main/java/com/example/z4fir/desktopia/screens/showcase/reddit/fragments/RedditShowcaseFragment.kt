@@ -137,30 +137,26 @@ class RedditShowcaseFragment : Fragment() {
                         0 -> {
 
                             model.setListing("hot")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - Hot"
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - hot"
                             model.subredditString.value = currentSub
-                            model.refreshList()
                             dialog.dismiss()
                         }
                         1 -> {
                             model.setListing("new")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - New"
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - new"
                             model.subredditString.value = currentSub
-                            model.refreshList()
                             dialog.dismiss()
                         }
                         2 -> {
                             model.setListing("rising")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - Rising"
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - rising"
                             model.subredditString.value = currentSub
-                            model.refreshList()
                             dialog.dismiss()
                         }
                         3 -> {
                             model.setListing("top")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - Top(24hr)"
+                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - top(24hr)"
                             model.subredditString.value = currentSub
-                            model.refreshList()
                             dialog.dismiss()
                         }
                     }
@@ -169,6 +165,7 @@ class RedditShowcaseFragment : Fragment() {
             builder.show()
             true
         }
+
         R.id.reddit_subreddit_picker -> {
 
             val builder = AlertDialog.Builder(context!!)
@@ -177,27 +174,32 @@ class RedditShowcaseFragment : Fragment() {
 
                     when (id) {
                         0 -> {
-                            model.subredditString.value = "averageBattlestations"
+                            model.subredditString.value = "battlestations"
+                            binding.showcaseRedditToolbar.title = "Battlestations - ${model.currentListing()}"
                             dialog.dismiss()
                         }
                         1 -> {
-                            model.subredditString.value = "battletop"
+                            model.subredditString.value = "averageBattlestations"
+                            binding.showcaseRedditToolbar.title = "Average - ${model.currentListing()}"
                             dialog.dismiss()
                         }
                         2 -> {
-                            model.subredditString.value = "consolebattlestations"
+                            model.subredditString.value = "battletops"
+                            binding.showcaseRedditToolbar.title = "Battletops - ${model.currentListing()}"
                             dialog.dismiss()
                         }
                         3 -> {
                             model.subredditString.value = "shittybattlestations"
+                            binding.showcaseRedditToolbar.title = "Shitty Stations - ${model.currentListing()}"
                             dialog.dismiss()
                         }
                     }
                 }
+
             builder.show()
             true
-
         }
+
         else -> super.onOptionsItemSelected(item)
     }
 }

@@ -10,7 +10,7 @@ import com.example.z4fir.desktopia.screens.showcase.reddit.repo.InMemoryRepoRedd
 class RedditViewModel : ViewModel() {
 
     private val service = ApiServiceReddit.retrofitService
-     val subredditString = MutableLiveData<String>()
+    val subredditString = MutableLiveData<String>()
     private val listingString = MutableLiveData<String>()
     private val repo = InMemoryRepoReddit()
     private val subredditResult = map(subredditString) {
@@ -42,7 +42,7 @@ class RedditViewModel : ViewModel() {
     }
 
     fun currentSubreddit(): String? = subredditString.value?.capitalize()
-    fun currentListing(): String? = listingString.value?.capitalize()
+    fun currentListing(): String? = listingString.value
 
     fun setListing(listing: String) {
 
