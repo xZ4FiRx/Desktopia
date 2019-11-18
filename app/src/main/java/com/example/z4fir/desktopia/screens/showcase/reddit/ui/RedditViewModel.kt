@@ -13,11 +13,11 @@ class RedditViewModel : ViewModel() {
     val subredditString = MutableLiveData<String>()
     private val listingString = MutableLiveData<String>()
     private val repo = InMemoryRepoReddit()
+
     private val subredditResult = map(subredditString) {
         repo.redditPost(it, listingString.value!!, service)
     }
 
-    //
     val post = Transformations.switchMap(subredditResult) { it.pagedList }
     val networkState = Transformations.switchMap(subredditResult) { it.networkState }
     val refreshState = Transformations.switchMap(subredditResult) { it.refreshState }

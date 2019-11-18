@@ -1,20 +1,18 @@
-package com.example.z4fir.desktopia.screens.showcase.instagram.adapter
+package com.example.z4fir.desktopia.util
 
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.z4fir.desktopia.R
+import com.github.chrisbanes.photoview.PhotoView
 
 
 @BindingAdapter("imageUrl")
-fun bindImage(imgView: ImageView, imgUrl: String?) {
+fun bindImage(imgView: PhotoView, imgUrl: String?) {
 
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()

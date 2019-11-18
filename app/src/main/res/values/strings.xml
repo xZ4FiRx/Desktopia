@@ -19,6 +19,7 @@
     <string name="battlestation">#battlestation</string>
     <string name="listing">Listing</string>
     <string name="subreddit">Subreddit</string>
+    <string name="share">Share</string>
 
 
     <string-array name="listing_array">

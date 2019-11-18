@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -31,13 +32,12 @@ class RedditShowcaseFragment : Fragment() {
     private lateinit var binding: FragmentRedditShowcaseBinding
     private lateinit var model: RedditViewModel
     private val adapter = RedditPostAdapter()
-    private lateinit var title: String
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(KEY_SUB, model.currentSubreddit())
         outState.putString(KEY_LISTING, model.currentListing())
-        outState.putString(KEY_TITLE, title)
+        outState.putString(KEY_TITLE, setTitle(model.currentSubreddit()!!, model.currentListing()!!))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -58,9 +58,8 @@ class RedditShowcaseFragment : Fragment() {
         val listing = savedInstanceState?.getString(KEY_LISTING) ?: DEFAULT_LISTING
         model.selectListing(listing)
 
-        title = "r/${model.currentSubreddit()} - ${model.currentListing()}"
 
-        initAdapter()
+        initObservers()
 
     }
 
@@ -70,8 +69,8 @@ class RedditShowcaseFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = model
 
-        binding.showcaseRedditToolbar.title = savedInstanceState?.getString(KEY_TITLE)
-            ?: "r/${model.currentSubreddit()} - ${model.currentListing()}"
+        binding.showcaseRedditToolbar.title = savedInstanceState?.getString(KEY_TITLE) ?:
+                setTitle(model.currentSubreddit()!!, model.currentListing()!!)
 
         binding.showcaseRedditList.adapter = adapter
         val ll = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -98,12 +97,14 @@ class RedditShowcaseFragment : Fragment() {
         }
     }
 
-    private fun initAdapter() {
+    private fun initObservers() {
 
         model.post.observe(this, Observer<PagedList<RedditPost>> {
             adapter.submitList(it)
 
+            binding.showcaseRedditToolbar.title = setTitle(model.currentSubreddit()!!, model.currentListing()!!)
         })
+
 
         model.networkState.observe(this, Observer {
             adapter.setNetworkState(it)
@@ -130,34 +131,26 @@ class RedditShowcaseFragment : Fragment() {
             val currentSub = model.currentSubreddit()
             val builder = AlertDialog.Builder(context!!)
             builder.setTitle("Filter by listing")
-                .setItems(R.array.listing_array) { dialog, id ->
+                .setItems(R.array.listing_array) { _, id ->
 
                     when (id) {
 
                         0 -> {
 
                             model.setListing("hot")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - hot"
                             model.subredditString.value = currentSub
-                            dialog.dismiss()
                         }
                         1 -> {
                             model.setListing("new")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - new"
                             model.subredditString.value = currentSub
-                            dialog.dismiss()
                         }
                         2 -> {
                             model.setListing("rising")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - rising"
                             model.subredditString.value = currentSub
-                            dialog.dismiss()
                         }
                         3 -> {
                             model.setListing("top")
-                            binding.showcaseRedditToolbar.title = "r/${model.currentSubreddit()} - top(24hr)"
                             model.subredditString.value = currentSub
-                            dialog.dismiss()
                         }
                     }
                 }
@@ -175,23 +168,15 @@ class RedditShowcaseFragment : Fragment() {
                     when (id) {
                         0 -> {
                             model.subredditString.value = "battlestations"
-                            binding.showcaseRedditToolbar.title = "Battlestations - ${model.currentListing()}"
-                            dialog.dismiss()
                         }
                         1 -> {
                             model.subredditString.value = "averageBattlestations"
-                            binding.showcaseRedditToolbar.title = "Average - ${model.currentListing()}"
-                            dialog.dismiss()
                         }
                         2 -> {
                             model.subredditString.value = "battletops"
-                            binding.showcaseRedditToolbar.title = "Battletops - ${model.currentListing()}"
-                            dialog.dismiss()
                         }
                         3 -> {
                             model.subredditString.value = "shittybattlestations"
-                            binding.showcaseRedditToolbar.title = "Shitty Stations - ${model.currentListing()}"
-                            dialog.dismiss()
                         }
                     }
                 }
@@ -201,5 +186,35 @@ class RedditShowcaseFragment : Fragment() {
         }
 
         else -> super.onOptionsItemSelected(item)
+    }
+
+    private fun setTitle(subreddit: String, listing: String): String {
+
+        var sub = subreddit
+        var listingType = listing
+
+        when (sub) {
+
+            "battlestations" -> {
+                sub.capitalize()
+            }
+            "averageBattlestations" -> {
+                sub = "Average"
+            }
+            "battletops" -> {
+                sub.capitalize()
+            }
+            "shittybattlestations" -> {
+                sub = "Shitty"
+            }
+        }
+
+        when (listing) {
+            "top" -> {
+                listingType = "top(24hr)"
+            }
+        }
+
+        return "$sub - $listingType"
     }
 }

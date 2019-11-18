@@ -80,21 +80,21 @@ class InstagramShowcaseFragment : Fragment() {
         }
     }
 
+    private fun refreshLayout() {
+        binding.swipeRefresh.isRefreshing = true
+    }
+
     private fun setHashTagButtons() {
 
         val button1 = binding.instagramHashtagButton1
         val button2 = binding.instagramHashtagButton2
         val button3 = binding.instagramHashtagButton3
 
-        button1.isEnabled = false
-
         button1.setOnClickListener {
 
             if (!binding.swipeRefresh.isRefreshing) {
 
                 model.addingHashtag("battlestation")
-                refreshLayout()
-                model.refreshList()
 
                 button1.isEnabled = false
                 button2.isEnabled = true
@@ -107,8 +107,6 @@ class InstagramShowcaseFragment : Fragment() {
             if (!binding.swipeRefresh.isRefreshing) {
 
                 model.addingHashtag("desksetup")
-                model.refreshList()
-                refreshLayout()
 
                 button1.isEnabled = true
                 button2.isEnabled = false
@@ -121,8 +119,6 @@ class InstagramShowcaseFragment : Fragment() {
             if (!binding.swipeRefresh.isRefreshing) {
 
                 model.addingHashtag("dreamsetup")
-                model.refreshList()
-                refreshLayout()
 
                 button1.isEnabled = true
                 button2.isEnabled = true
@@ -160,7 +156,7 @@ class InstagramShowcaseFragment : Fragment() {
 
                 "battlestation" -> {button1.isEnabled = false}
                 "desksetup" -> {button2.isEnabled = false}
-                "pcbuilds" -> {button3.isEnabled = false}
+                "dreamsetup" -> {button3.isEnabled = false}
             }
         })
     }
@@ -191,8 +187,6 @@ class InstagramShowcaseFragment : Fragment() {
         })
     }
 
-    private fun refreshLayout() {
-        binding.swipeRefresh.isRefreshing = true
-    }
+
 
 }

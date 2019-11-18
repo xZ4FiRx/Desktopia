@@ -3,7 +3,7 @@ package com.example.z4fir.desktopia.screens.showcase.reddit.repo
 import androidx.lifecycle.Transformations
 import androidx.paging.Config
 import androidx.paging.toLiveData
-import com.example.z4fir.desktopia.screens.showcase.instagram.repository.Listing
+import com.example.z4fir.desktopia.util.Listing
 import com.example.z4fir.desktopia.screens.showcase.reddit.model.RedditPost
 import com.example.z4fir.desktopia.screens.showcase.reddit.network.RedditPostApiService
 import com.example.z4fir.desktopia.screens.showcase.reddit.ui.PageDataSourceFactoryReddit

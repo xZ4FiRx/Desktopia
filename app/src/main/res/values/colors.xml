@@ -14,7 +14,19 @@
     <color name="BABY_POWDER">#FCFFFC</color>
     <color name="BABY_POWDER2">#E6E8E6</color>
 
-    <color name="REDDIT_UPVOTE">#FF4500</color>
+
+    <!--    Reddit Color Palette-->
+    <color name="REDDIT_1">#FF4500</color>
+    <color name="REDDIT_2">#5296dd</color>
+    <color name="REDDIT_3">#92bddf</color>
+    <color name="REDDIT_4">#ffffff</color>
+    <color name="REDDIT_5">#d7d7d7</color>
+
+
+    <!--    RedditShowCase-->
+
+
+    <!--    InstagramShowcase-->
 
 
 

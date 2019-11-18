@@ -41,127 +41,68 @@
             android:paddingRight="@dimen/spacing_large"
             android:paddingBottom="@dimen/spacing_medium">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:orientation="horizontal">
 
+            <TextView
+                    android:id="@+id/reddit_list_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/voces"
+                    android:text="@{score}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/REDDIT_1"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/cardView"
+                    tools:text="Score" />
+
             <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
                     android:layout_width="100dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:clipToPadding="true"
-                    app:cardCornerRadius="8dp"
+                    app:cardCornerRadius="4dp"
                     app:cardElevation="0dp"
                     app:cardPreventCornerOverlap="false"
-                    app:cardUseCompatPadding="false">
+                    app:cardUseCompatPadding="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="32dp">
 
                 <ImageView
                         android:id="@+id/reddit_list_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        app:imageUrlThumbnail="@{url}" />
+                        app:imageUrlThumbnail="@{url}"
+                        tools:layout_editor_absoluteX="173dp"
+                        tools:layout_editor_absoluteY="1dp" />
 
             </androidx.cardview.widget.CardView>
 
-            <View
-                    android:layout_width="@dimen/spacing_large"
-                    android:layout_height="0dp" />
 
-            <LinearLayout
-                    android:layout_width="match_parent"
+            <TextView
+                    android:id="@+id/reddit_list_title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                        <TextView
-                                android:id="@+id/reddit_list_title"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="32dp"
-                                android:layout_marginBottom="8dp"
-                                android:layout_weight="1"
-                                android:ellipsize="end"
-                                android:maxLines="1"
-                                android:text="@{title}"
-                                android:textAllCaps="false"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                app:fontFamily="sans-serif-black"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/reddit_list_score"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                tools:text="Title" />
-
-                        <TextView
-                                android:id="@+id/reddit_list_score"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:text="@{score}"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                                android:textColor="@color/REDDIT_UPVOTE"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintVertical_bias="0.6"
-                                tools:text="Score" />
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{title}"
+                    android:textAllCaps="false"
+                    android:textSize="24sp"
+                    app:fontFamily="@font/voces"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/cardView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Title" />
 
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
-
-
-                <View
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_weight="1" />
-
-                <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/grey_40"
-                            android:textSize="12sp"
-                            android:text="posted by: "/>
-
-                    <TextView
-                            android:id="@+id/reddit_list_author"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{author}"
-                            android:textAllCaps="true"
-                            android:textSize="14sp"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                            app:fontFamily="sans-serif-medium"
-                            tools:text="Author" />
-
-                    <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
                 android:layout_width="match_parent"

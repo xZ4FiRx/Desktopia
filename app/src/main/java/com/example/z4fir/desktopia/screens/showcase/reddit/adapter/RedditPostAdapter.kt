@@ -1,12 +1,12 @@
 package com.example.z4fir.desktopia.screens.showcase.reddit.adapter
 
-import android.app.Activity
-import android.content.Context
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +30,7 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
             override fun areItemsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean =
                 oldItem.name != newItem.name
 
+            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(oldItem: RedditPost, newItem: RedditPost): Boolean =
                 oldItem == newItem
         }
@@ -86,42 +87,55 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
 
     class RedditPostViewHolder(private val binding: RedditListViewItemBinding) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
+        private lateinit var sourceUrl: String
+        private lateinit var postUrl: String
+        private lateinit var title: String
+        private lateinit var author: String
+        private var created: Long = 0
+        private var score = 0
+
+
         init {
             itemView.setOnClickListener(this)
         }
 
-        override fun onClick(p0: View?) {
+        override fun onClick(view: View?) {
 
+            var bundle = bundleOf("sourceurl" to sourceUrl,
+                "posturl" to postUrl, "title" to title,
+                "author" to author, "created" to created,
+                "score" to score)
+
+            view?.findNavController()?.navigate(R.id.redditPostDetailFragment, bundle)
         }
 
         fun bindTo(post: RedditPost?) {
+
+            post?.preview?.images?.forEach {
+                sourceUrl = it.source.url
+            }
+
+            postUrl = post!!.url
+            title = post.title
+            author = post.author!!
+            created = post.created
+            score = post.score!!
+
 
             binding.title = post!!.title
             binding.score = post.score.toString()
             binding.author = post.author
 
-            if (post.secureMedia != null) {
-                binding.url = post.secureMedia.oembed.thumbnailUrl
-
-                Log.i("secureMediaURl", post.secureMedia.oembed.thumbnailUrl)
-
-            } else {
-
-                if (!post.url.contains(".png") and !post.url.contains(".jpg")) {
-
-                    val appendExtension = post.url + ".png"
-                    binding.url = appendExtension
-
-                } else {
-
-                    binding.url = post.url
-                }
+            post.preview?.images?.forEach {
+                binding.url = it.source.url.replace("amp;", "")
             }
 
             val data = Date(post.created * 1000)
             val sdf = java.text.SimpleDateFormat("EEE, d MMM yy", Locale.US)
 
             binding.time = sdf.format(data)
+
+
         }
     }
 }
