@@ -106,7 +106,7 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
                 "author" to author, "created" to created,
                 "score" to score)
 
-            view?.findNavController()?.navigate(R.id.redditPostDetailFragment, bundle)
+            view?.findNavController()?.navigate(R.id.action_redditPostFragment_to_redditPostDetailFragment, bundle)
         }
 
         fun bindTo(post: RedditPost?) {

@@ -46,18 +46,6 @@
                 android:layout_height="100dp"
                 android:orientation="horizontal">
 
-            <TextView
-                    android:id="@+id/reddit_list_score"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/voces"
-                    android:text="@{score}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    android:textColor="@color/REDDIT_1"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/cardView"
-                    tools:text="Score" />
-
             <androidx.cardview.widget.CardView
                     android:id="@+id/cardView"
                     android:layout_width="100dp"
@@ -68,8 +56,8 @@
                     app:cardPreventCornerOverlap="false"
                     app:cardUseCompatPadding="false"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="32dp">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                         android:id="@+id/reddit_list_image"
@@ -93,13 +81,26 @@
                     android:maxLines="1"
                     android:text="@{title}"
                     android:textAllCaps="false"
-                    android:textSize="24sp"
-                    app:fontFamily="@font/voces"
+                    android:textSize="16sp"
+                    app:fontFamily="@font/arimo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/cardView"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Title" />
+
+            <TextView
+                    android:id="@+id/reddit_list_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/voces"
+                    android:text="@{score}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                    android:textColor="@color/REDDIT_1"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Score" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

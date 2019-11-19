@@ -55,13 +55,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
+                    android:layout_height="match_parent"
+                    android:background="@color/EERIE_BLACK2">
 
                 <TextView
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
@@ -69,6 +69,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/voces"
                         android:lines="1"
+                        android:textColor="@color/grey_40"
                         android:text="@{title}"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toBottomOf="parent"
