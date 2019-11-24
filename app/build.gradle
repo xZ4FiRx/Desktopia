@@ -99,5 +99,5 @@ dependencies {
     implementation "com.github.chrisbanes:PhotoView:2.3.0"
 
     //Zoomy(Image zoom)
-    implementation "com.ablanco.zoomy:zoomy:1.1.0"
+    implementation "com.github.okaybroda:ImageZoom:1.1.0"
 }

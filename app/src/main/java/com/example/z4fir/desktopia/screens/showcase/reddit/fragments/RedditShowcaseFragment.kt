@@ -58,19 +58,19 @@ class RedditShowcaseFragment : Fragment() {
         val listing = savedInstanceState?.getString(KEY_LISTING) ?: DEFAULT_LISTING
         model.selectListing(listing)
 
-
         initObservers()
 
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentRedditShowcaseBinding.inflate(inflater)
+
         //to use a LiveData object, this has to be added.
         binding.lifecycleOwner = this
         binding.viewModel = model
 
-        binding.showcaseRedditToolbar.title = savedInstanceState?.getString(KEY_TITLE) ?:
-                setTitle(model.currentSubreddit()!!, model.currentListing()!!)
+        binding.showcaseRedditToolbar.title =
+            savedInstanceState?.getString(KEY_TITLE) ?: setTitle(model.currentSubreddit()!!, model.currentListing()!!)
 
         binding.showcaseRedditList.adapter = adapter
         val ll = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
@@ -93,7 +93,7 @@ class RedditShowcaseFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
 
         binding.showcaseRedditToolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_redditPostFragment_to_showcaseLanding)
         }
     }
 
@@ -105,7 +105,6 @@ class RedditShowcaseFragment : Fragment() {
             binding.showcaseRedditToolbar.title = setTitle(model.currentSubreddit()!!, model.currentListing()!!)
         })
 
-
         model.networkState.observe(this, Observer {
             adapter.setNetworkState(it)
         })
@@ -114,6 +113,8 @@ class RedditShowcaseFragment : Fragment() {
     private fun initRefresh() {
 
         val swipe = binding.showcaseRedditSwipe
+        val recyclerview = binding.showcaseRedditList
+
 
         swipe.setOnRefreshListener {
             model.refreshList()
@@ -122,6 +123,20 @@ class RedditShowcaseFragment : Fragment() {
         model.refreshState.observe(this, Observer {
             swipe.isRefreshing = it == NetworkState.LOADING
         })
+
+        model.refreshState.observe(this, Observer {
+
+            swipe.isRefreshing = it == NetworkState.LOADING
+
+            if (swipe.isRefreshing) {
+                recyclerview.visibility = View.GONE
+            } else {
+                adapter.notifyDataSetChanged()
+                recyclerview.visibility = View.VISIBLE
+            }
+        })
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -162,7 +177,7 @@ class RedditShowcaseFragment : Fragment() {
         R.id.reddit_subreddit_picker -> {
 
             val builder = AlertDialog.Builder(context!!)
-            builder.setTitle("Filter by listing")
+            builder.setTitle("Choose subreddit...")
                 .setItems(R.array.subreddit_array) { dialog, id ->
 
                     when (id) {

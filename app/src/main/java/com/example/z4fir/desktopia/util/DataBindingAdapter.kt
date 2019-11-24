@@ -8,11 +8,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.example.z4fir.desktopia.R
-import com.github.chrisbanes.photoview.PhotoView
 
 
 @BindingAdapter("imageUrl")
-fun bindImage(imgView: PhotoView, imgUrl: String?) {
+fun bindImage(imgView: ImageView, imgUrl: String?) {
 
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()

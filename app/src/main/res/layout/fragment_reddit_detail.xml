@@ -32,186 +32,190 @@
     </data>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/BABY_POWDER">
+            android:layout_height="wrap_content">
 
-
-        <androidx.cardview.widget.CardView
-                android:id="@+id/reddit_detail_title_container"
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/EERIE_BLACK"
-
-                app:cardElevation="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/reddit_detail_info_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reddit_detail_image">
+                android:layout_height="match_parent"
+                android:background="@color/BABY_POWDER">
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/reddit_detail_title_container"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/EERIE_BLACK2">
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/EERIE_BLACK"
 
-                <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/voces"
-                        android:lines="1"
-                        android:textColor="@color/grey_40"
-                        android:text="@{title}"
-                        android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/reddit_detail_info_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reddit_detail_image">
 
 
-        </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/reddit_detail_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:background="?attr/colorPrimary"
-                android:elevation="3dp"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        <com.github.chrisbanes.photoview.PhotoView
-                android:id="@+id/reddit_detail_image"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:adjustViewBounds="true"
-                app:imageUrl="@{sourceUrl}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reddit_detail_toolbar"
-                tools:srcCompat="@tools:sample/avatars[3]" />
-
-        <androidx.cardview.widget.CardView
-
-                android:id="@+id/reddit_detail_info_card"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reddit_detail_title_container">
+                    <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/voces"
+                            android:lines="1"
+                            android:textColor="@color/grey_40"
+                            android:text="@{title}"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <LinearLayout
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/reddit_detail_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?attr/colorPrimary"
+                    android:elevation="3dp"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                    android:id="@+id/reddit_detail_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:adjustViewBounds="true"
+                    app:imageUrl="@{sourceUrl}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reddit_detail_toolbar"
+                    tools:srcCompat="@tools:sample/avatars[3]" />
+
+            <androidx.cardview.widget.CardView
+
+                    android:id="@+id/reddit_detail_info_card"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/reddit_detail_title_container">
+
 
                 <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-                    <ImageView
-                            android:layout_width="wrap_content"
+                    <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:tint="@color/REDDIT_1"
-                            app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-                    <TextView
-                            android:id="@+id/reddit_detail_score"
-                            android:layout_width="wrap_content"
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:tint="@color/REDDIT_1"
+                                app:srcCompat="@drawable/ic_arrow_upward_black_24dp" />
+
+                        <TextView
+                                android:id="@+id/reddit_detail_score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@{score}"
+                                tools:text="Score" />
+                    </LinearLayout>
+
+                    <View
+                            android:layout_width="1px"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@color/grey_10" />
+
+                    <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@{score}"
-                            tools:text="Score" />
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:tint="@color/REDDIT_2"
+                                app:srcCompat="@drawable/ic_person_black_24dp" />
+
+                        <TextView
+                                android:id="@+id/reddit_detail_author"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@{author}"
+                                tools:text="Author" />
+                    </LinearLayout>
+
+                    <View
+                            android:layout_width="1px"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:background="@color/grey_10" />
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:tint="@color/green_700"
+                                app:srcCompat="@drawable/ic_date_range_black_24dp" />
+
+                        <TextView
+                                android:id="@+id/reddit_detail_comments"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@{dataFormat}"
+                                tools:text="Time" />
+
+
+                    </LinearLayout>
                 </LinearLayout>
-
-                <View
-                        android:layout_width="1px"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@color/grey_10" />
-
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:tint="@color/REDDIT_2"
-                            app:srcCompat="@drawable/ic_person_black_24dp" />
-
-                    <TextView
-                            android:id="@+id/reddit_detail_author"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@{author}"
-                            tools:text="Author" />
-                </LinearLayout>
-
-                <View
-                        android:layout_width="1px"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:background="@color/grey_10" />
-
-                <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                    <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:tint="@color/green_700"
-                            app:srcCompat="@drawable/ic_date_range_black_24dp" />
-
-                    <TextView
-                            android:id="@+id/reddit_detail_comments"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@{dataFormat}"
-                            tools:text="Time" />
-
-
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -24,7 +24,7 @@
 
 
     <ScrollView
-            android:id="@+id/tagPost_detail_scroll"
+            android:id="@+id/instagram_detail_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/BABY_POWDER"
@@ -36,7 +36,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/tagPost_detail_container"
+                    android:id="@+id/instagram_detail_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -45,19 +45,19 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/tagPost_detail_toolbar"
+                        android:id="@+id/instagram_detail_toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="?attr/colorPrimary"
                         android:minHeight="?attr/actionBarSize"
                         android:theme="?attr/actionBarTheme"
-                        app:layout_constraintBottom_toTopOf="@+id/tagPost_detail_image"
+                        app:layout_constraintBottom_toTopOf="@+id/instagram_detail_image"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                <com.github.chrisbanes.photoview.PhotoView
-                        android:id="@+id/tagPost_detail_image"
+                <ImageView
+                        android:id="@+id/instagram_detail_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
@@ -65,7 +65,7 @@
                         app:layout_constraintBottom_toTopOf="@+id/expand_views"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tagPost_detail_toolbar"
+                        app:layout_constraintTop_toBottomOf="@+id/instagram_detail_toolbar"
                         tools:src="@drawable/image_2" />
 
                 <LinearLayout
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintTop_toBottomOf="@id/tagPost_detail_image"
+                        app:layout_constraintTop_toBottomOf="@id/instagram_detail_image"
                         tools:layout_editor_absoluteX="16dp">
 
                     <LinearLayout
@@ -124,7 +124,7 @@
 
 
                         <TextView
-                                android:id="@+id/tagPost_detail_caption"
+                                android:id="@+id/instagram_detail_caption"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="8dp"

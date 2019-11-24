@@ -6,17 +6,22 @@
             app:startDestination="@id/showcaseLanding">
 
     <fragment
-            android:id="@+id/gridFragment"
+            android:id="@+id/instagramShowcaseFragment"
             android:name="com.example.z4fir.desktopia.screens.showcase.instagram.fragments.InstagramShowcaseFragment"
             android:label="fragment_insta_feed"
             tools:layout="@layout/fragment_instagram_showcase">
         <action
-                android:id="@+id/action_gridFragment_to_instagramDetailFragment"
+                android:id="@+id/action_instagramShowcaseFragment_to_instagramDetailFragment"
                 app:destination="@id/instagramDetailFragment"
                 app:enterAnim="@anim/nav_default_pop_enter_anim"
                 app:exitAnim="@anim/nav_default_pop_exit_anim"
                 app:launchSingleTop="false"
                 app:popUpToInclusive="false" />
+        <action
+                android:id="@+id/action_instagramShowcaseFragment_to_showcaseLanding"
+                app:destination="@id/showcaseLanding"
+                app:enterAnim="@anim/nav_default_pop_enter_anim"
+                app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
 
@@ -36,8 +41,8 @@
             android:name="com.example.z4fir.desktopia.screens.showcase.ShowcaseLandingFragment"
             android:label="showcaseLanding" >
         <action
-                android:id="@+id/action_showcaseLanding_to_gridFragment"
-                app:destination="@id/gridFragment"
+                android:id="@+id/action_showcaseLanding_to_instagramShowcaseFragment"
+                app:destination="@id/instagramShowcaseFragment"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim" />
         <action
@@ -54,6 +59,11 @@
         <action
                 android:id="@+id/action_redditPostFragment_to_redditPostDetailFragment"
                 app:destination="@id/redditPostDetailFragment"
+                app:enterAnim="@anim/nav_default_pop_enter_anim"
+                app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+                android:id="@+id/action_redditPostFragment_to_showcaseLanding"
+                app:destination="@id/showcaseLanding"
                 app:enterAnim="@anim/nav_default_pop_enter_anim"
                 app:exitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>

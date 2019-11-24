@@ -15,6 +15,7 @@ class RedditChildren(
     @Json(name = "data") val data: RedditPost)
 
 class RedditPost(
+    @Json(name = "subreddit") val subreddit: String,
     @Json(name = "author") val author: String?,
     @Json(name = "title") val title: String,
     @Json(name = "name") val name: String, //id
@@ -23,6 +24,7 @@ class RedditPost(
     @Json(name = "created") val created: Long,
     @Json(name = "is_self") val isSelf: Boolean,
     @Json(name = "stickied") val stickied: Boolean,
+    @Json(name = "permalink") val permalink: String,
     @Json(name = "url") val url: String)
 
 class PreviewImages(

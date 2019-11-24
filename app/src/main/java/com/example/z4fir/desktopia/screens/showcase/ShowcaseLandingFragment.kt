@@ -30,7 +30,7 @@ class ShowcaseLandingFragment : Fragment() {
         val redditButton = binding.redditImageButton
 
         instagramButton.setOnClickListener {
-                findNavController().navigate(R.id.action_showcaseLanding_to_gridFragment)
+                findNavController().navigate(R.id.action_showcaseLanding_to_instagramShowcaseFragment)
         }
 
         redditButton.setOnClickListener {

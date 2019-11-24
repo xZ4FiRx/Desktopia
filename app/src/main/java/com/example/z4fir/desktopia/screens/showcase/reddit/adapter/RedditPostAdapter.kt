@@ -1,7 +1,6 @@
 package com.example.z4fir.desktopia.screens.showcase.reddit.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -91,8 +90,11 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
         private lateinit var postUrl: String
         private lateinit var title: String
         private lateinit var author: String
+        private lateinit var subreddit: String
+        private lateinit var permalink: String
         private var created: Long = 0
         private var score = 0
+
 
 
         init {
@@ -104,7 +106,7 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
             var bundle = bundleOf("sourceurl" to sourceUrl,
                 "posturl" to postUrl, "title" to title,
                 "author" to author, "created" to created,
-                "score" to score)
+                "score" to score, "permalink" to permalink)
 
             view?.findNavController()?.navigate(R.id.action_redditPostFragment_to_redditPostDetailFragment, bundle)
         }
@@ -120,11 +122,13 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
             author = post.author!!
             created = post.created
             score = post.score!!
+            subreddit = post.subreddit
+            permalink = post.permalink
 
-
-            binding.title = post!!.title
+            binding.title = post.title.capitalize()
             binding.score = post.score.toString()
             binding.author = post.author
+            binding.subreddit = "r/"+post.subreddit.toLowerCase()
 
             post.preview?.images?.forEach {
                 binding.url = it.source.url.replace("amp;", "")
@@ -134,8 +138,6 @@ class RedditPostAdapter : PagedListAdapter<RedditPost, RecyclerView.ViewHolder>(
             val sdf = java.text.SimpleDateFormat("EEE, d MMM yy", Locale.US)
 
             binding.time = sdf.format(data)
-
-
         }
     }
 }

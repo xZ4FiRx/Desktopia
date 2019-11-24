@@ -113,7 +113,7 @@ class InstagramTagAdapter : PagedListAdapter<Edges,
                         "shortCode: $shortCode\n" +
                         "caption: $caption")
 
-            view!!.findNavController().navigate(R.id.action_gridFragment_to_instagramDetailFragment, bundle)
+            view!!.findNavController().navigate(R.id.action_instagramShowcaseFragment_to_instagramDetailFragment, bundle)
         }
 
         fun bindTo(post: Edges?) {

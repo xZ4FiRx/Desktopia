@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.z4fir.desktopia.R
 import com.example.z4fir.desktopia.databinding.FragmentInstagramDetailBinding
 import com.example.z4fir.desktopia.util.ViewAnimation
+import com.viven.imagezoom.ImageZoomHelper
 import java.util.*
 
 
@@ -29,14 +30,14 @@ class InstagramDetailFragment : Fragment() {
     private var timeStamp: Long = 0
 
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.instagram_detail_menu, menu)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.instagram_detail_menu, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -80,13 +81,13 @@ class InstagramDetailFragment : Fragment() {
 
         binding = FragmentInstagramDetailBinding.inflate(LayoutInflater.from(parentFragment!!.context))
 
-        (activity as AppCompatActivity).setSupportActionBar(binding.tagPostDetailToolbar)
+        (activity as AppCompatActivity).setSupportActionBar(binding.instagramDetailToolbar)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
 
-        binding.tagPostDetailToolbar.title = ""
-        binding.tagPostDetailToolbar.setNavigationOnClickListener {
-                findNavController().navigateUp()
+        binding.instagramDetailToolbar.title = ""
+        binding.instagramDetailToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
 
         captionExpanded = binding.expandedCaption
@@ -108,6 +109,9 @@ class InstagramDetailFragment : Fragment() {
 
             toggleSection(view, captionExpanded)
         }
+
+        ImageZoomHelper.setViewZoomable(binding.instagramDetailImage)
+
 
         return binding.root
     }
@@ -132,7 +136,7 @@ class InstagramDetailFragment : Fragment() {
     private fun toggleSection(bt: View, lyt: View) {
 
         val show = toggleArrow(bt)
-        val scrollView = binding.tagPostDetailScroll
+        val scrollView = binding.instagramDetailScroll
 
         if (show) {
             ViewAnimation.expand(lyt, object : ViewAnimation.AnimListener {

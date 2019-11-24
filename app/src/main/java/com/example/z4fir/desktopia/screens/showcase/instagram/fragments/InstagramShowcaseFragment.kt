@@ -52,6 +52,9 @@ class InstagramShowcaseFragment : Fragment() {
         savedInstanceState: Bundle?): View? {
 
         binding = FragmentInstagramShowcaseBinding.inflate(inflater)
+
+
+
         binding.lifecycleOwner = this
         binding.viewModel = model
 
@@ -65,7 +68,7 @@ class InstagramShowcaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initAdapter()
-        initStates()
+        initRefresh()
     }
 
     private fun setToolbar() {
@@ -76,12 +79,8 @@ class InstagramShowcaseFragment : Fragment() {
 
         binding.showcaseInstagramToolbar.title = ""
         binding.showcaseInstagramToolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_instagramShowcaseFragment_to_showcaseLanding)
         }
-    }
-
-    private fun refreshLayout() {
-        binding.swipeRefresh.isRefreshing = true
     }
 
     private fun setHashTagButtons() {
@@ -161,7 +160,7 @@ class InstagramShowcaseFragment : Fragment() {
         })
     }
 
-    private fun initStates() {
+    private fun initRefresh() {
 
         val swipe = binding.swipeRefresh
         val recyclerview = binding.showcaseInstagramList
