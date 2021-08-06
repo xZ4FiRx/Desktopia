@@ -53,8 +53,6 @@ class InstagramShowcaseFragment : Fragment() {
 
         binding = FragmentInstagramShowcaseBinding.inflate(inflater)
 
-
-
         binding.lifecycleOwner = this
         binding.viewModel = model
 
